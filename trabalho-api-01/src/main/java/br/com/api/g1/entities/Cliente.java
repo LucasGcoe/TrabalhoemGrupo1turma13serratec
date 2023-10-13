@@ -27,10 +27,10 @@ public class Cliente {
 		super();
 	}
 
-	public Cliente(Integer id, String nome, String endereco, String telefone, String usuario, String email, String cpf,
+	public Cliente(Integer id_cliente, String nome, String endereco, String telefone, String usuario, String email, String cpf,
 			Date nascimento) {
 		super();
-		this.id = id;
+		this.id_cliente = id_cliente;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.telefone = telefone;
@@ -41,11 +41,11 @@ public class Cliente {
 	}
 
 	public Integer getId() {
-		return id;
+		return id_cliente;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	public String getNome() {
@@ -106,7 +106,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
+		return "Cliente [id=" + id_cliente + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
 				+ ", usuario=" + usuario + ", email=" + email + ", cpf=" + cpf + ", nascimento=" + nascimento + "]";
 	}	
 	
