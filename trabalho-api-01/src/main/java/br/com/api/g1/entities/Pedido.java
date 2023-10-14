@@ -16,15 +16,17 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_pedido; 
 	private Date dataPedido;
+	private Boolean ativo;
 	
 	public Pedido() {
 		super();
 	}
 	
-	public Pedido(Integer id_pedido, Date dataPedido) {
+	public Pedido(Integer id_pedido, Date dataPedido, Boolean ativo) {
 		super();
 		this.id_pedido = id_pedido;
 		this.dataPedido = dataPedido;
+		this.ativo = ativo;
 	}
 
 	public Integer getId_pedido() {
@@ -42,10 +44,18 @@ public class Pedido {
 	public void setDataPedido(Date dataPedido) {
 		this.dataPedido = dataPedido;
 	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	@Override
 	public String toString() {
-		return "Pedido [id_pedido=" + id_pedido + ", dataPedido=" + dataPedido + "]";
-	}
+		return "Pedido [id_pedido=" + id_pedido + ", dataPedido=" + dataPedido + ", ativo=" + ativo + "]";
+	}	
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,4 +41,19 @@ public class PedidoController {
 	public void deletarIdPedido(@PathVariable Integer id) {
 		pedidoService.deletarIdPedido(id);
 	}
+	
+	@DeleteMapping("/desativarPedido/{id}")
+	public void desativarPedido(@PathVariable Integer id) {
+		pedidoService.desativarPedido(id);
+	}
+	
+	@PutMapping("/atualizarPedido/{id}")
+	public Pedido atualizaPedido(@PathVariable Integer id, @RequestBody Pedido pedido) {
+		return pedidoService.atualizarPedido(id, pedido);
+	}
+	
+	
+	
 }
+
+	
