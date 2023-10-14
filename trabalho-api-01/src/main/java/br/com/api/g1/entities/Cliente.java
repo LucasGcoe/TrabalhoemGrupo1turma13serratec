@@ -22,13 +22,14 @@ public class Cliente {
 	private String email;
 	private String cpf;
 	private Date nascimento;
+	private Boolean ativo;
 		
 	public Cliente() {
 		super();
 	}
 
 	public Cliente(Integer id_cliente, String nome, String endereco, String telefone, String usuario, String email, String cpf,
-			Date nascimento) {
+			Date nascimento, Boolean ativo) {
 		super();
 		this.id_cliente = id_cliente;
 		this.nome = nome;
@@ -38,6 +39,7 @@ public class Cliente {
 		this.email = email;
 		this.cpf = cpf;
 		this.nascimento = nascimento;
+		this.ativo = ativo;
 	}
 
 	public Integer getId() {
@@ -103,11 +105,19 @@ public class Cliente {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id_cliente + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
-				+ ", usuario=" + usuario + ", email=" + email + ", cpf=" + cpf + ", nascimento=" + nascimento + "]";
+				+ ", usuario=" + usuario + ", email=" + email + ", cpf=" + cpf + ", nascimento=" + nascimento + ", ativo=" + ativo + "]";
 	}	
 	
 }
