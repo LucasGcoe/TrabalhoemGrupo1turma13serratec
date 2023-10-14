@@ -31,12 +31,12 @@ public class ClienteController {
 		return clienteService.listarClientes();
 	}
 	
-	@GetMapping("/listar/{id}")
+	@GetMapping("/listarCliente/{id}")
 	public Cliente listarIdCliente(@PathVariable Integer id) {
 		return clienteService.listarIdCliente(id);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/deleteCliente/{id}")
 	public void deletarIdCliente(@PathVariable Integer id) {
 		clienteService.deletarIdCliente(id);
 	}
