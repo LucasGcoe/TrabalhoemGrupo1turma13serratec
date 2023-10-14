@@ -28,7 +28,7 @@ public class Pedido {
 	}
 
 	public Integer getId_pedido() {
-		return id_pedido;
+		return id_pedido; 
 	}
 
 	public void setId_pedido(Integer id_pedido) {
