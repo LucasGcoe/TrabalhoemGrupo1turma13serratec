@@ -1,11 +1,14 @@
 package br.com.api.g1.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,13 +25,26 @@ public class Cliente {
 	private String email;
 	private String cpf;
 	private Date nascimento;
+	private Boolean ativo;
+	
+//	@OneToMany //relacionamente um para muitos
+//	@JoinColumn(name="aluno_id") //criar uma chave estrangeira da tabela de associação (Disciplina)
+//	private List<Disciplina> disciplinas; //lista de disciplinas por aluno
+	
+	@OneToMany
+	@JoinColumn(name = "cliente_id")
+	private List<Pedido> pedidos;
+	
+	@OneToMany
+	@JoinColumn(name = "endereco_id")
+	private List<Endereco> enderecos;
 		
 	public Cliente() {
 		super();
 	}
 
 	public Cliente(Integer id_cliente, String nome, String endereco, String telefone, String usuario, String email, String cpf,
-			Date nascimento) {
+			Date nascimento, Boolean ativo) {
 		super();
 		this.id_cliente = id_cliente;
 		this.nome = nome;
@@ -38,6 +54,7 @@ public class Cliente {
 		this.email = email;
 		this.cpf = cpf;
 		this.nascimento = nascimento;
+		this.ativo = ativo;
 	}
 
 	public Integer getId() {
@@ -103,11 +120,19 @@ public class Cliente {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id_cliente + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
-				+ ", usuario=" + usuario + ", email=" + email + ", cpf=" + cpf + ", nascimento=" + nascimento + "]";
+				+ ", usuario=" + usuario + ", email=" + email + ", cpf=" + cpf + ", nascimento=" + nascimento + ", ativo=" + ativo + "]";
 	}	
 	
 }

@@ -30,4 +30,62 @@ public class ClienteService {
 	public void deletarIdCliente(@PathVariable Integer id) {
 		clienteRepository.deleteById(id);
 	}
+	
+	public void desativarCliente(Integer id) {
+		Cliente cliente = listarIdCliente(id);
+		
+		if(cliente != null) {
+			cliente.setAtivo(false);
+			clienteRepository.save(cliente);
+		}
+	}
+	
+	public Cliente atualizarCliente(Integer id, Cliente cliente) {
+		Cliente dadoAntigo = listarIdCliente(id);
+		
+		if(cliente.getCpf() != null) {
+			dadoAntigo.setCpf(cliente.getCpf());
+		}
+		if(cliente.getEmail() != null) {
+			dadoAntigo.setEmail(cliente.getEmail());
+		}
+		if(cliente.getEndereco() != null) {
+			dadoAntigo.setEndereco(cliente.getEndereco());
+		}
+		if(cliente.getNascimento() != null) {
+			dadoAntigo.setNascimento(cliente.getNascimento());
+		}
+		if(cliente.getNome() != null) {
+			dadoAntigo.setNome(cliente.getNome());
+		}
+		if(cliente.getTelefone() != null) {
+			dadoAntigo.setTelefone(cliente.getTelefone());
+		}
+		if(cliente.getUsuario() != null) {
+			dadoAntigo.setUsuario(cliente.getUsuario());
+		}
+		if(cliente.getAtivo() != null) {
+			dadoAntigo.setAtivo(cliente.getAtivo());
+		}
+		
+		dadoAntigo.setId(id);
+		return clienteRepository.save(dadoAntigo);
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

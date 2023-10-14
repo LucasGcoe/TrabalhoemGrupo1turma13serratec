@@ -1,11 +1,16 @@
 package br.com.api.g1.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,13 +26,26 @@ public class Produto {
 	private Date dataFabricacao;
 	private Integer qtdEstoque;
 	private Double vlrUnitario;
-
+	private Boolean ativo;
+	
+	@OneToMany
+	@JoinColumn(name = "produto_id")
+	private List<Categoria> categorias;
+	
+	@ManyToMany
+	@JoinTable(
+			name="produto_pedido",
+			joinColumns=@JoinColumn(name="produto_id"),
+			inverseJoinColumns=@JoinColumn(name="pedido_id")
+			)
+	private List<Pedido> pedidos;
+	
 	public Produto() {
 		super();
 	}
 
 	public Produto(Integer id_produto, String nome, String descricao, Date dataFabricacao, Integer qtdEstoque,
-			Double vlrUnitario) {
+			Double vlrUnitario, Boolean ativo) {
 		super();
 		this.id_produto = id_produto;
 		this.nome = nome;
@@ -35,6 +53,7 @@ public class Produto {
 		this.dataFabricacao = dataFabricacao;
 		this.qtdEstoque = qtdEstoque;
 		this.vlrUnitario = vlrUnitario;
+		this.ativo = ativo;
 	}
 
 	public Integer getId_produto() {
@@ -84,11 +103,25 @@ public class Produto {
 	public void setVlrUnitario(Double vlrUnitario) {
 		this.vlrUnitario = vlrUnitario;
 	}
+	
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	@Override
 	public String toString() {
 		return "Produto [id_produto=" + id_produto + ", nome=" + nome + ", descricao=" + descricao + ", dataFabricacao="
-				+ dataFabricacao + ", qtdEstoque=" + qtdEstoque + ", vlrUnitario=" + vlrUnitario + "]";
+				+ dataFabricacao + ", qtdEstoque=" + qtdEstoque + ", vlrUnitario=" + vlrUnitario + ", ativo=" + ativo
+				+ "]";
 	}
+
+	
+	
+	
 
 }

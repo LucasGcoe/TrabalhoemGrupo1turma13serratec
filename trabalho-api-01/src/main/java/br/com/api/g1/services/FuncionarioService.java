@@ -29,7 +29,30 @@ public class FuncionarioService {
 	}
 	public void deletarIdFuncionario(@PathVariable Integer id) {
 		funcionarioRepository.deleteById(id);
+	}	
+	
+	public void desativarFuncionario(Integer id) {
+		Funcionario funcionario = listarIdFuncionario(id);
+		
+		if(funcionario != null) {
+			funcionario.setAtivo(false);
+			funcionarioRepository.save(funcionario);
+		}
 	}
+
+	public Funcionario atualizarFuncionario(Integer id, Funcionario funcionario) {
+		Funcionario dadoAntigo = listarIdFuncionario(id);
 		
-		
-}
+		if(funcionario.getAtivo()!=null) {
+			dadoAntigo.setAtivo(funcionario.getAtivo());
+		}
+		if(funcionario.getCpf() != null) {
+			dadoAntigo.setCpf(funcionario.getCpf());
+		}
+		if(funcionario.getNome() != null) {
+			dadoAntigo.setNome(funcionario.getNome());
+		}
+		dadoAntigo.setId_funcionario(id);
+		return funcionarioRepository.save(dadoAntigo);
+	}
+ }

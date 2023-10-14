@@ -14,17 +14,19 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_categoria;
 	private String nome;
-	private String descricacao;
+	private String descricao;
+	private Boolean ativo;
 	
 	public Categoria() {
 		super();
 	}
 
-	public Categoria(Integer id_categoria, String nome, String descricacao) {
+	public Categoria(Integer id_categoria, String nome, String descricacao, Boolean ativo) {
 		super();
 		this.id_categoria = id_categoria;
 		this.nome = nome;
-		this.descricacao = descricacao;
+		this.descricao = descricacao;
+		this.ativo = ativo;
 	}
 
 	public Integer getId_categoria() {
@@ -43,18 +45,25 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public String getDescricacao() {
-		return descricacao;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescricacao(String descricacao) {
-		this.descricacao = descricacao;
+	public void setDescricao(String descricacao) {
+		this.descricao = descricacao;
+	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
 	public String toString() {
-		return "Categoria [id_categoria=" + id_categoria + ", nome=" + nome + ", descricacao=" + descricacao + "]";
+		return "Categoria [id_categoria=" + id_categoria + ", nome=" + nome + ", descricao=" + descricao + ", ativo="
+				+ ativo + "]";
 	}
-	
-	
 }
