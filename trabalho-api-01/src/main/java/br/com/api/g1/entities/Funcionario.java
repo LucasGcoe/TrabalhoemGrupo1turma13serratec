@@ -1,9 +1,13 @@
 package br.com.api.g1.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +21,12 @@ public class Funcionario {
 	private String	cpf;
 	private Boolean ativo;
 	
+	@OneToMany
+	@JoinColumn(name = "funcionario_id")
+	private List<Produto> produtos;
+	
 	public Funcionario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Funcionario(Integer id_funcionario, String nome, String cpf, Boolean ativo) {

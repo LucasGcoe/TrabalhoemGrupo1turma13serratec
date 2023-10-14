@@ -1,11 +1,14 @@
 package br.com.api.g1.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +26,18 @@ public class Cliente {
 	private String cpf;
 	private Date nascimento;
 	private Boolean ativo;
+	
+//	@OneToMany //relacionamente um para muitos
+//	@JoinColumn(name="aluno_id") //criar uma chave estrangeira da tabela de associação (Disciplina)
+//	private List<Disciplina> disciplinas; //lista de disciplinas por aluno
+	
+	@OneToMany
+	@JoinColumn(name = "cliente_id")
+	private List<Pedido> pedidos;
+	
+	@OneToMany
+	@JoinColumn(name = "endereco_id")
+	private List<Endereco> enderecos;
 		
 	public Cliente() {
 		super();

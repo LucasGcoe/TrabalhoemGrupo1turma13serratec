@@ -1,11 +1,16 @@
 package br.com.api.g1.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +27,18 @@ public class Produto {
 	private Integer qtdEstoque;
 	private Double vlrUnitario;
 	private Boolean ativo;
+	
+	@OneToMany
+	@JoinColumn(name = "produto_id")
+	private List<Categoria> categorias;
+	
+	@ManyToMany
+	@JoinTable(
+			name="produto_pedido",
+			joinColumns=@JoinColumn(name="produto_id"),
+			inverseJoinColumns=@JoinColumn(name="pedido_id")
+			)
+	private List<Pedido> pedidos;
 	
 	public Produto() {
 		super();
