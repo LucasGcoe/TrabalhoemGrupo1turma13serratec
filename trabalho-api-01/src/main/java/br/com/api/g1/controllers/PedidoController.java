@@ -3,7 +3,9 @@ package br.com.api.g1.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +29,15 @@ public class PedidoController {
 	@GetMapping("/listarPedidos")
 	public List<Pedido> listarPedidos() {
 		return pedidoService.listarPedidos();
+	}
+	
+	@GetMapping("/listarIdPedido/{id}")
+	public Pedido listarIdPedido(@PathVariable Integer id) {
+		return pedidoService.listarIdPedido(id);
+	}
+	
+	@DeleteMapping("/deletarIdPedido/{id}")
+	public void deletarIdPedido(@PathVariable Integer id) {
+		pedidoService.deletarIdPedido(id);
 	}
 }

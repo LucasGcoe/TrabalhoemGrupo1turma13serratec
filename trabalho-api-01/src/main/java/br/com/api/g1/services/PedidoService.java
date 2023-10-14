@@ -20,5 +20,13 @@ public class PedidoService {
 	
 	public List<Pedido> listarPedidos() {
 		return pedidoRepository.findAll();		
+	}	
+
+	public Pedido listarIdPedido(Integer id) {
+		return pedidoRepository.findById(id).get();
+	}
+	
+	public void deletarIdPedido(Integer id) {
+		pedidoRepository.deleteById(id);
 	}
 }
