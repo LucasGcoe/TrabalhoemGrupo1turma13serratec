@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.api.g1.entities.Funcionario;
 import br.com.api.g1.repositories.FuncionarioRepository;
@@ -22,4 +23,13 @@ public class FuncionarioService {
 			return funcionarioRepository.findAll();
 	
 	}
+	
+	public Funcionario listarIdFuncionario(Integer id) {
+		return funcionarioRepository.findById(id).get();
+	}
+	public void deletarIdFuncionario(@PathVariable Integer id) {
+		funcionarioRepository.deleteById(id);
+	}
+		
+		
 }
