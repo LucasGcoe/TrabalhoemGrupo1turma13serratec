@@ -21,7 +21,7 @@ public class Categoria {
 		super();
 	}
 
-	public Categoria(Integer id_categoria, String nome, String descricacao) {
+	public Categoria(Integer id_categoria, String nome, String descricacao, Boolean ativo) {
 		super();
 		this.id_categoria = id_categoria;
 		this.nome = nome;
