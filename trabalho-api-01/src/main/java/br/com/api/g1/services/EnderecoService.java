@@ -1,6 +1,7 @@
 package br.com.api.g1.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,54 @@ public class EnderecoService {
 
 	@Autowired
 	EnderecoRepository enderecoRepository;
+	
+	public List<Endereco> listarEnderecos(){
+		return enderecoRepository.findAll();
+	}
+	
+	public Endereco listarIdEndereco(Integer id) {
+		return enderecoRepository.findById(id).get();
+	}
+	
+	public void deletarIdEndereco(Integer id) {
+		enderecoRepository.deleteById(id);
+	}
+	
+	public void desativarEndereco(Integer id) {
+		Endereco endereco = listarIdEndereco(id);
+		
+		if(endereco != null) {
+			endereco.setAtivo(false);
+			enderecoRepository.save(endereco);
+		}
+	}
+	
+	public Endereco atualizarEndereco(Integer id, Endereco endereco) {
+		Endereco dadoAntigo = listarIdEndereco(id);
+		
+		if(endereco.getCep() != null) {
+			dadoAntigo.setCep(endereco.getCep());
+		}
+		if(endereco.getLogradouro() != null) {
+			dadoAntigo.setLogradouro(endereco.getLogradouro());
+		}
+		
+		if(endereco.getBairro() != null) {
+			dadoAntigo.setBairro(endereco.getBairro());
+		}
+		if(endereco.getLocalidade() != null) {
+			dadoAntigo.setLocalidade(endereco.getLocalidade());
+		}
+		if(endereco.getUf() != null) {
+			dadoAntigo.setUf(endereco.getUf());
+		}
+		if(endereco.getAtivo() != null) {
+			dadoAntigo.setAtivo(endereco.getAtivo());
+		}
+		
+		dadoAntigo.setId_endereco(id);
+		return enderecoRepository.save(dadoAntigo);
+	}
 
 	public Endereco pesquisarEndereco(String cep) {
 		RestTemplate restTemplate = new RestTemplate();

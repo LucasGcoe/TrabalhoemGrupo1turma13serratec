@@ -23,6 +23,7 @@ public class Endereco {
 	private String bairro;
 	private String localidade;
 	private String uf;
+	private Boolean ativo;
 	
 	//@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@OneToMany
@@ -98,10 +99,21 @@ public class Endereco {
 		this.clientes = clientes;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	@Override
 	public String toString() {
-		return "Endereco [cep=" + cep + ", logradouro=" + logradouro + ", bairro=" + bairro + ", localidade="
-				+ localidade + ", uf=" + uf + "]";
+		return "Endereco [id_endereco=" + id_endereco + ", cep=" + cep + ", logradouro=" + logradouro + ", bairro="
+				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", ativo=" + ativo + ", clientes=" + clientes
+				+ "]";
 	}
+
+	
 
 }
