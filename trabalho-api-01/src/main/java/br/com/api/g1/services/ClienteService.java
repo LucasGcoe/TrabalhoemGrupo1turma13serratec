@@ -49,9 +49,7 @@ public class ClienteService {
 		if(cliente.getEmail() != null) {
 			dadoAntigo.setEmail(cliente.getEmail());
 		}
-		if(cliente.getEndereco() != null) {
-			dadoAntigo.setEndereco(cliente.getEndereco());
-		}
+		
 		if(cliente.getNascimento() != null) {
 			dadoAntigo.setNascimento(cliente.getNascimento());
 		}
