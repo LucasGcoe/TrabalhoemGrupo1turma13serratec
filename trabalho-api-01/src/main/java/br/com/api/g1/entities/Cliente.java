@@ -2,6 +2,7 @@ package br.com.api.g1.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,19 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente extends User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_cliente;	
-	private String nome;	
+	private Integer id_cliente;		
 	private String telefone;
 	private String usuario;
-	private String email;
 	private String cpf;
 	private Date nascimento;
 	private Boolean ativo;
@@ -30,37 +30,39 @@ public class Cliente {
 	@JoinColumn(name = "cliente_id")
 	private List<Pedido> pedidos;
 			
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Cliente() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(Integer id_cliente, String nome, String telefone, String usuario, String email, String cpf,
-			Date nascimento, Boolean ativo) {
+	public Cliente(Integer idUser, String nomeUsuario, String email, Set<Role> roles, String password) {
+		super(idUser, nomeUsuario, email, roles, password);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Cliente(Integer id_cliente, String telefone, String usuario, String cpf, Date nascimento, Boolean ativo,
+			List<Pedido> pedidos, User user) {
 		super();
 		this.id_cliente = id_cliente;
-		this.nome = nome;
 		this.telefone = telefone;
 		this.usuario = usuario;
-		this.email = email;
 		this.cpf = cpf;
 		this.nascimento = nascimento;
 		this.ativo = ativo;
+		this.pedidos = pedidos;
+		this.user = user;
 	}
 
-	public Integer getId() {
+	public Integer getId_cliente() {
 		return id_cliente;
 	}
 
-	public void setId(Integer id_cliente) {
+	public void setId_cliente(Integer id_cliente) {
 		this.id_cliente = id_cliente;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public String getTelefone() {
@@ -79,14 +81,6 @@ public class Cliente {
 		this.usuario = usuario;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getCpf() {
 		return cpf;
 	}
@@ -102,7 +96,7 @@ public class Cliente {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
-	
+
 	public Boolean getAtivo() {
 		return ativo;
 	}
@@ -111,10 +105,27 @@ public class Cliente {
 		this.ativo = ativo;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id_cliente + ", nome=" + nome + ", telefone=" + telefone
-				+ ", usuario=" + usuario + ", email=" + email + ", cpf=" + cpf + ", nascimento=" + nascimento + ", ativo=" + ativo + "]";
-	}	
+		return "Cliente [id_cliente=" + id_cliente + ", telefone=" + telefone + ", usuario=" + usuario + ", cpf=" + cpf
+				+ ", nascimento=" + nascimento + ", ativo=" + ativo + ", pedidos=" + pedidos + ", user=" + user + "]";
+	}
+	
 	
 }

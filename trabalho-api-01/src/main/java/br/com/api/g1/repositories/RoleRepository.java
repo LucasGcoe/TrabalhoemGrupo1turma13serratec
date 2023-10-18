@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import br.com.api.g1.ENUMS.TipoRoleEnum;
 import br.com.api.g1.entities.Role;
+import br.com.api.g1.enums.TipoRoleEnum;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer>{

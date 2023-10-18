@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.g1.ENUMS.TipoRoleEnum;
 import br.com.api.g1.config.JWTUtil;
 import br.com.api.g1.dto.LoginDTO;
 import br.com.api.g1.dto.UserDTO;
 import br.com.api.g1.entities.Endereco;
 import br.com.api.g1.entities.Role;
 import br.com.api.g1.entities.User;
+import br.com.api.g1.enums.TipoRoleEnum;
 import br.com.api.g1.repositories.EnderecoRepository;
 import br.com.api.g1.repositories.RoleRepository;
 import br.com.api.g1.services.EnderecoService;

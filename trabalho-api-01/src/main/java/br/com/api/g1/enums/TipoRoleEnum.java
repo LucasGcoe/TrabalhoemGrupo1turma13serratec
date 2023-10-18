@@ -1,4 +1,4 @@
-package br.com.api.g1.ENUMS;
+package br.com.api.g1.enums;
 
 public enum TipoRoleEnum {
 

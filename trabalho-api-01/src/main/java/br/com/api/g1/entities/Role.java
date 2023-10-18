@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import br.com.api.g1.ENUMS.TipoRoleEnum;
+import br.com.api.g1.enums.TipoRoleEnum;
 
 @Entity
 @Table(name = "roles")

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name="user")
+@Table(name="usuarioTeste")
 public class User {
 
     @Id
@@ -25,10 +25,6 @@ public class User {
     private String nomeUsuario;
     
     private String email;
-    
-    @OneToOne
-	@JoinColumn(name = "endereco_id")
-	private Endereco endereco;
     
     @ManyToMany
     @JoinTable(
@@ -45,12 +41,11 @@ public class User {
 		super();
 	}
 
-	public User(Integer idUser, String nomeUsuario, String email, Endereco endereco, Set<Role> roles, String password) {
+	public User(Integer idUser, String nomeUsuario, String email, Set<Role> roles, String password) {
 		super();
 		this.idUser = idUser;
 		this.nomeUsuario = nomeUsuario;
 		this.email = email;
-		this.endereco = endereco;
 		this.roles = roles;
 		this.password = password;
 	}
@@ -95,18 +90,9 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", nomeUsuario=" + nomeUsuario + ", email=" + email + ", endereco=" + endereco
-				+ ", roles=" + roles + ", password=" + password + "]";
+		return "User [idUser=" + idUser + ", nomeUsuario=" + nomeUsuario + ", email=" + email + ", roles=" + roles + ", password=" + password + "]";
 	}
 
 }

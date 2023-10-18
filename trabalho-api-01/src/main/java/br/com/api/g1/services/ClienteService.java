@@ -53,8 +53,8 @@ public class ClienteService {
 		if(cliente.getNascimento() != null) {
 			dadoAntigo.setNascimento(cliente.getNascimento());
 		}
-		if(cliente.getNome() != null) {
-			dadoAntigo.setNome(cliente.getNome());
+		if(cliente.getNomeUsuario() != null) {
+			dadoAntigo.setNomeUsuario(cliente.getNomeUsuario());
 		}
 		if(cliente.getTelefone() != null) {
 			dadoAntigo.setTelefone(cliente.getTelefone());
@@ -66,7 +66,7 @@ public class ClienteService {
 			dadoAntigo.setAtivo(cliente.getAtivo());
 		}
 		
-		dadoAntigo.setId(id);
+		dadoAntigo.setId_cliente(id);
 		return clienteRepository.save(dadoAntigo);
 	}
 	

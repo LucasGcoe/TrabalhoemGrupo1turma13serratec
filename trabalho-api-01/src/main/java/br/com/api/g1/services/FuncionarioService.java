@@ -49,8 +49,8 @@ public class FuncionarioService {
 		if(funcionario.getCpf() != null) {
 			dadoAntigo.setCpf(funcionario.getCpf());
 		}
-		if(funcionario.getNome() != null) {
-			dadoAntigo.setNome(funcionario.getNome());
+		if(funcionario.getNomeUsuario() != null) {
+			dadoAntigo.setNomeUsuario(funcionario.getNomeUsuario());
 		}
 		dadoAntigo.setId_funcionario(id);
 		return funcionarioRepository.save(dadoAntigo);
