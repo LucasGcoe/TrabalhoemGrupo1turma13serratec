@@ -46,17 +46,15 @@ public class ClienteService {
 		if(cliente.getCpf() != null) {
 			dadoAntigo.setCpf(cliente.getCpf());
 		}
-		if(cliente.getEmail() != null) {
-			dadoAntigo.setEmail(cliente.getEmail());
+		if(cliente.getUser().getEmail() != null) {
+			dadoAntigo.getUser().setEmail(cliente.getUser().getEmail());
 		}
-		if(cliente.getEndereco() != null) {
-			dadoAntigo.setEndereco(cliente.getEndereco());
-		}
+		
 		if(cliente.getNascimento() != null) {
 			dadoAntigo.setNascimento(cliente.getNascimento());
 		}
-		if(cliente.getNome() != null) {
-			dadoAntigo.setNome(cliente.getNome());
+		if(cliente.getUser().getNomeUsuario() != null) {
+			dadoAntigo.getUser().setNomeUsuario(cliente.getUser().getNomeUsuario());
 		}
 		if(cliente.getTelefone() != null) {
 			dadoAntigo.setTelefone(cliente.getTelefone());
@@ -68,7 +66,7 @@ public class ClienteService {
 			dadoAntigo.setAtivo(cliente.getAtivo());
 		}
 		
-		dadoAntigo.setId(id);
+		dadoAntigo.setId_cliente(id);
 		return clienteRepository.save(dadoAntigo);
 	}
 	
