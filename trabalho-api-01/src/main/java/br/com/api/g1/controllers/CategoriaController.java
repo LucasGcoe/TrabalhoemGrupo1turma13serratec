@@ -14,12 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g1.entities.Categoria;
 import br.com.api.g1.services.CategoriaService;
+import br.com.api.g1.services.EmailService;
 
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-
+	private EmailService emailService;//inserir em todos controlers que tiver envio de email
+    @Autowired
+    public void setEmailService(EmailService emailService) {
+        this.emailService = emailService;
+    }
 	
 	@Autowired
 	CategoriaService categoriaService;
@@ -31,6 +36,7 @@ public class CategoriaController {
 	
 	@GetMapping("/listarCategorias")
 	public List<Categoria> listarCategorias() {
+		emailService.envioEmailCadastro();//!!!!!!!!!USADO PARA O DISPARO DE EMAIL PARA CADA .ENDPOINT
 		return categoriaService.listarCategorias();
 	}
 
