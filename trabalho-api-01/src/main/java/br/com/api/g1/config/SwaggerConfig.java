@@ -55,7 +55,7 @@ public class SwaggerConfig {
 				.title("Documentação da Api do Grupo 01")
 				.description("Projeto final Api 2023.2 Serratec")
 				.license("Apache license version 2.0")
-				.version("6.2.1")
+				.version("6.2.2")
 				.build();
 		return apiInfo;
 	}
