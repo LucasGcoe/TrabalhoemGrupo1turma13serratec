@@ -1,13 +1,11 @@
 package br.com.api.g1.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,10 +23,10 @@ public class Endereco {
 	private String uf;
 	private Boolean ativo;
 	
-	//@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	@OneToMany
-	@JoinColumn(name = "endereco")
-	private List<Cliente> clientes;
+//	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
 	
 	public Endereco() {
 		super();
@@ -91,12 +89,12 @@ public class Endereco {
 		this.uf = uf;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
+	public void setClientes(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public Boolean getAtivo() {
@@ -110,7 +108,7 @@ public class Endereco {
 	@Override
 	public String toString() {
 		return "Endereco [id_endereco=" + id_endereco + ", cep=" + cep + ", logradouro=" + logradouro + ", bairro="
-				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", ativo=" + ativo + ", clientes=" + clientes
+				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", ativo=" + ativo + ", clientes=" + cliente
 				+ "]";
 	}
 
