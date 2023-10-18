@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "funcionario")
-public class Funcionario extends User{
+public class Funcionario{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +32,6 @@ public class Funcionario extends User{
 
 	public Funcionario() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Funcionario(Integer idUser, String nomeUsuario, String email, Set<Role> roles, String password) {
-		super(idUser, nomeUsuario, email, roles, password);
 		// TODO Auto-generated constructor stub
 	}
 

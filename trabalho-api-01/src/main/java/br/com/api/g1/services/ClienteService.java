@@ -46,15 +46,15 @@ public class ClienteService {
 		if(cliente.getCpf() != null) {
 			dadoAntigo.setCpf(cliente.getCpf());
 		}
-		if(cliente.getEmail() != null) {
-			dadoAntigo.setEmail(cliente.getEmail());
+		if(cliente.getUser().getEmail() != null) {
+			dadoAntigo.getUser().setEmail(cliente.getUser().getEmail());
 		}
 		
 		if(cliente.getNascimento() != null) {
 			dadoAntigo.setNascimento(cliente.getNascimento());
 		}
-		if(cliente.getNomeUsuario() != null) {
-			dadoAntigo.setNomeUsuario(cliente.getNomeUsuario());
+		if(cliente.getUser().getNomeUsuario() != null) {
+			dadoAntigo.getUser().setNomeUsuario(cliente.getUser().getNomeUsuario());
 		}
 		if(cliente.getTelefone() != null) {
 			dadoAntigo.setTelefone(cliente.getTelefone());

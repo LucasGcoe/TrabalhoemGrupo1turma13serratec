@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente extends User{
+public class Cliente{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +36,6 @@ public class Cliente extends User{
 
 	public Cliente() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Cliente(Integer idUser, String nomeUsuario, String email, Set<Role> roles, String password) {
-		super(idUser, nomeUsuario, email, roles, password);
 		// TODO Auto-generated constructor stub
 	}
 
