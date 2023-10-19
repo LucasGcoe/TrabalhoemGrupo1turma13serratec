@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	                .antMatchers("/pedidos/listarPedidos","/pedidos/listarIdPedido/{id}","/categorias/listarCategorias","/categorias/listarCategoria/{id}").permitAll()//TODAS AS ROTAS TEM QUE ENTRAR AQUI, DE TODOS OS CONTROLES################
 	                .antMatchers("/pedidos/salvarPedido").hasRole("CLIENTE")
 	                .antMatchers("/pedidos/atualizarPedido/{id}","/categorias/deletarCategoria/{id}","/categorias/desativarCategoria/{id}","/categorias/atualizarCategoria/{id}","/categorias/salvarCategoria").hasRole("FUNCIONARIO")
-	                .antMatchers("/pedidos/deletarIdPedido/{id}","/pedidos/desativarPedido/{id}","/pedidos/salvarPedido",).hasAnyRole("CLIENTE", "FUNCIONARIO")
+	                .antMatchers("/pedidos/deletarIdPedido/{id}","/pedidos/desativarPedido/{id}","/pedidos/salvarPedido").hasAnyRole("CLIENTE", "FUNCIONARIO")
 	                .and()
 	                .userDetailsService(uds)
 	                .exceptionHandling()
