@@ -21,6 +21,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 @Component
 public class JWTFilter extends OncePerRequestFilter { //garante que o filtro seja executado apenas uma vez por solicitação
 
+	//injeção de dependências
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 	@Autowired
@@ -45,7 +46,7 @@ public class JWTFilter extends OncePerRequestFilter { //garante que o filtro sej
 				
 			} else { //Aqui, o token JWT é validado usando o utilitário jwtUtil. Se a validação for bem-sucedida, o filtro obtém o email do usuário a partir do token.
 				try {
-					String email = jwtUtil.validateTokenAndRetrieveSubject(jwt);
+					String email = jwtUtil.validateTokenAndRetrieveSubject(jwt);//armazena o email associado a um token jwt válido
 					UserDetails userDetails = userDetailsService.loadUserByUsername(email);//detalhes do usuário são carregados usando o serviço userDetailsService
 					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email,
 							userDetails.getPassword(), userDetails.getAuthorities());//O filtro cria um token de autenticação do Spring Security, que inclui o email do usuário, a senha (não sensível) e as autoridades do usuário.
@@ -53,7 +54,7 @@ public class JWTFilter extends OncePerRequestFilter { //garante que o filtro sej
 						//Se o contexto de segurança estiver vazio (nenhum usuário autenticado), o token de autenticação é definido no contexto de segurança.
 						SecurityContextHolder.getContext().setAuthentication(authToken);
 					}
-				} catch (JWTVerificationException exc) { //Se houver uma exceção na verificação do token JWT, um erro de solicitação ruim é enviado em resposta.
+				} catch (JWTVerificationException exc) { //Se houver uma exceção na verificação do token JWT, um erro de badRequest é enviado em resposta.
 					response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Token JWT Inválido");
 				} catch (Exception e) { //Se ocorrerem exceções durante o processo de autenticação, um erro de badRequest é enviado com uma mensagem de erro correspondente.
 					response.sendError(HttpServletResponse.SC_BAD_REQUEST,
