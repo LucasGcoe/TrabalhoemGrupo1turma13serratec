@@ -154,4 +154,82 @@ public class EmailService {
 		}
 	}
 	
+	public void envioEmailInativo() {  
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("apiserrag1@gmail.com");
+			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setSubject("Cadastro Inativo!");
+			
+			StringBuilder builder= new StringBuilder();
+			builder.append("<html>\r\n");
+			builder.append("	<body>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			<h1>Seu cadastro foi CANCELADO com Sucesso!</h1>\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<br/>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			Caso não reconheça essa ação, favor contatar o suporte: apiserrag1@gmail.com");
+			builder.append("		</div>\r\n");
+			builder.append("	</body>\r\n");
+			builder.append("</html>\r\n");
+		}
+		catch(MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void envioEmailPedidoCancel() { 
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("apiserrag1@gmail.com");
+			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setSubject("Pedido Cancelado!");
+			
+			StringBuilder builder= new StringBuilder();
+			builder.append("<html>\r\n");
+			builder.append("	<body>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			<h1>Seu Pedido foi CANCELADO com Sucesso!</h1>\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<br/>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			Caso não reconheça essa ação, favor contatar o suporte: apiserrag1@gmail.com");
+			builder.append("		</div>\r\n");
+			builder.append("	</body>\r\n");
+			builder.append("</html>\r\n");
+		}
+		catch(MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void envioEmailPedidoRealizado() { 
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("apiserrag1@gmail.com");
+			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setSubject("Pedido Realizado!");
+			
+			StringBuilder builder= new StringBuilder();
+			builder.append("<html>\r\n");
+			builder.append("	<body>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			<h1>Seu Pedido foi REALIZADO com Sucesso!</h1>\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<br/>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			Caso não reconheça essa ação, favor contatar o suporte: apiserrag1@gmail.com");
+			builder.append("		</div>\r\n");
+			builder.append("	</body>\r\n");
+			builder.append("</html>\r\n");
+		}
+		catch(MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
