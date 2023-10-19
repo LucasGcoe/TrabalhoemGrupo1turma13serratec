@@ -20,7 +20,12 @@ import br.com.api.g1.services.PedidoService;
 @RequestMapping("/pedidos")
 public class PedidoController {
 	
-	private EmailService emailService;
+	private EmailService emailService; //EM TODOS OS CONTROLES QUE TIVER DISPARO DE EMAIL DEVE TER !!!!
+	 @Autowired
+	    public void setEmailService(EmailService emailService) {
+	        this.emailService = emailService;
+	    }
+	 
 	@Autowired
 	PedidoService pedidoService;
 	

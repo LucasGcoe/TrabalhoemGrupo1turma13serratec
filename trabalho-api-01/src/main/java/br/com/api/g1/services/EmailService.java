@@ -174,6 +174,9 @@ public class EmailService {
 			builder.append("		</div>\r\n");
 			builder.append("	</body>\r\n");
 			builder.append("</html>\r\n");
+		
+			helper.setText(builder.toString(), true);
+			emailSender.send(mensagemCadastro);
 		}
 		catch(MessagingException e) {
 			e.printStackTrace();
@@ -200,6 +203,9 @@ public class EmailService {
 			builder.append("		</div>\r\n");
 			builder.append("	</body>\r\n");
 			builder.append("</html>\r\n");
+		
+			helper.setText(builder.toString(), true);
+			emailSender.send(mensagemCadastro);
 		}
 		catch(MessagingException e) {
 			e.printStackTrace();
@@ -226,7 +232,12 @@ public class EmailService {
 			builder.append("		</div>\r\n");
 			builder.append("	</body>\r\n");
 			builder.append("</html>\r\n");
+		
+			helper.setText(builder.toString(), true);
+			emailSender.send(mensagemCadastro);
 		}
+		
+		
 		catch(MessagingException e) {
 			e.printStackTrace();
 		}
