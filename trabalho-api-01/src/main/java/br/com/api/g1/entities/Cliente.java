@@ -3,15 +3,17 @@ package br.com.api.g1.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "cliente")
@@ -19,11 +21,25 @@ public class Cliente{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_cliente;		
+	@Column(name = "id_cliente")
+	private Integer id_cliente;	
+	@Column(name = "telefone_cliente")
+	@NotNull 
+	@Size(max=14)
 	private String telefone;
+	@Column(name = "usuario_cliente")
+	@NotNull 
+	@Size(max=60)
 	private String usuario;
+	@Column(name = "cpf_cliente")
+	@NotNull 
+	@Size(max=11)
 	private String cpf;
+	@Column(name = "nascimento_cliente")
+	@NotNull 
+	@Size(max=10)
 	private Date nascimento;
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	@OneToMany(mappedBy = "cliente")
