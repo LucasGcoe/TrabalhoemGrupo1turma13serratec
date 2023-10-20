@@ -25,11 +25,12 @@ public class Pedido {
 	private Date dataPedido;
 	@Column(name = "ativo")
 	private Boolean ativo;
+	
 	public Pedido() {
 		super();
 	}
-	
-	public Pedido(Integer id_pedido, Date dataPedido, Boolean ativo) {
+
+	public Pedido(Integer id_pedido, @NotNull @Size(max = 10) Date dataPedido, Boolean ativo) {
 		super();
 		this.id_pedido = id_pedido;
 		this.dataPedido = dataPedido;

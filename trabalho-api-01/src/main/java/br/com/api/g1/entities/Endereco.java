@@ -51,16 +51,22 @@ public class Endereco {
 	public Endereco() {
 		super();
 	}
-
-	public Endereco(String cep, String logradouro, String bairro, String localidade, String uf) {
+	
+	public Endereco(Integer id_endereco, @NotNull @Size(max = 10) String cep,
+			@NotNull @Size(max = 60) String logradouro, @NotNull @Size(max = 30) String bairro,
+			@NotNull @Size(max = 35) String localidade, @NotNull @Size(max = 2) String uf, Boolean ativo,
+			Cliente cliente) {
 		super();
+		this.id_endereco = id_endereco;
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.bairro = bairro;
 		this.localidade = localidade;
 		this.uf = uf;
-	}	
-	
+		this.ativo = ativo;
+		this.cliente = cliente;
+	}
+
 	public Integer getId_endereco() {
 		return id_endereco;
 	}

@@ -64,8 +64,10 @@ public class Produto {
 		super();
 	}
 
-	public Produto(Integer id_produto, String nome, String descricao, Date dataFabricacao, Integer qtdEstoque,
-			Double vlrUnitario, Boolean ativo) {
+	public Produto(Integer id_produto, @NotNull @Size(max = 50) String nome, @NotNull @Size(max = 120) String descricao,
+			@NotNull @Size(max = 15) Date dataFabricacao, @NotNull @Size(max = 100) Integer qtdEstoque,
+			@NotNull @Size(max = 100) Double vlrUnitario, Boolean ativo, List<Categoria> categorias,
+			List<Pedido> pedidos) {
 		super();
 		this.id_produto = id_produto;
 		this.nome = nome;
@@ -74,7 +76,10 @@ public class Produto {
 		this.qtdEstoque = qtdEstoque;
 		this.vlrUnitario = vlrUnitario;
 		this.ativo = ativo;
+		this.categorias = categorias;
+		this.pedidos = pedidos;
 	}
+
 
 	public Integer getId_produto() {
 		return id_produto;

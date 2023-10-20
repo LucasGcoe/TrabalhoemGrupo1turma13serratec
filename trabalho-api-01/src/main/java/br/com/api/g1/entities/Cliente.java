@@ -57,8 +57,10 @@ public class Cliente{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(Integer id_cliente, String telefone, String usuario, String cpf, Date nascimento, Boolean ativo,
-			List<Pedido> pedidos, User user) {
+	public Cliente(Integer id_cliente, @NotNull @Size(max = 14) String telefone,
+			@NotNull @Size(max = 60) String usuario, @NotNull @Size(max = 11) String cpf,
+			@NotNull @Size(max = 10) Date nascimento, Boolean ativo, List<Endereco> enderecos, List<Pedido> pedidos,
+			User user) {
 		super();
 		this.id_cliente = id_cliente;
 		this.telefone = telefone;
@@ -66,6 +68,7 @@ public class Cliente{
 		this.cpf = cpf;
 		this.nascimento = nascimento;
 		this.ativo = ativo;
+		this.enderecos = enderecos;
 		this.pedidos = pedidos;
 		this.user = user;
 	}
