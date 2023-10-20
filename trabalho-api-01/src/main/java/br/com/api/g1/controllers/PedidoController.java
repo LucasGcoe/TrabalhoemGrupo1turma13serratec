@@ -13,17 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g1.entities.Pedido;
+import br.com.api.g1.services.EmailService;
 import br.com.api.g1.services.PedidoService;
 
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
-
+	
+	private EmailService emailService; //EM TODOS OS CONTROLES QUE TIVER DISPARO DE EMAIL DEVE TER !!!!
+	 @Autowired
+	    public void setEmailService(EmailService emailService) {
+	        this.emailService = emailService;
+	    }
+	 
 	@Autowired
 	PedidoService pedidoService;
 	
 	@PostMapping("/salvarPedido") 
 	public Pedido salvarPedido(@RequestBody Pedido pedido) {
+		emailService.envioEmailPedidoRealizado();
 		return pedidoService.salvarPedido(pedido);		
 	}
 	
@@ -39,6 +47,7 @@ public class PedidoController {
 	
 	@DeleteMapping("/deletarIdPedido/{id}")
 	public void deletarIdPedido(@PathVariable Integer id) {
+		emailService.envioEmailPedidoCancel();
 		pedidoService.deletarIdPedido(id);
 	}
 	

@@ -2,6 +2,7 @@ package br.com.api.g1.entities;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,10 +22,15 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer idUser;
-
+    @Column(name = "nome_usuario")
+	@NotNull 
+	@Size(max=100)
     private String nomeUsuario;
-    
+    @Column(name = "email_usuario")
+	@NotNull 
+	@Size(max=100)
     private String email;
     
     @ManyToMany

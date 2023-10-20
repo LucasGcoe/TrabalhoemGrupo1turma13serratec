@@ -1,8 +1,7 @@
 package br.com.api.g1.entities;
 
 import java.util.List;
-import java.util.Set;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "funcionario")
@@ -18,8 +19,13 @@ public class Funcionario{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_funcionario")
 	private Integer id_funcionario;
+	@Column(name = "cpf_funcionario")
+	@NotNull 
+	@Size(max=11)
 	private String	cpf;
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	@OneToMany

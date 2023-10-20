@@ -3,6 +3,7 @@ package br.com.api.g1.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "produto")
@@ -20,12 +23,29 @@ public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_produto;
+	@Column(name = "id_produto")
+	private Integer id_produto;//depois colocar em CammelCase
+	@Column(name = "nome_produto")
+	@NotNull 
+	@Size(max=50)
 	private String nome;
+	@Column(name = "descricao_produto")
+	@NotNull 
+	@Size(max=120)
 	private String descricao;
+	@Column(name = "dataFabricacao_produto")
+	@NotNull 
+	@Size(max=15)
 	private Date dataFabricacao;
+	@Column(name = "qtdEstoque_produto")
+	@NotNull 
+	@Size(max=100)
 	private Integer qtdEstoque;
+	@Column(name = "vlrUnitario_produto")
+	@NotNull 
+	@Size(max=100)
 	private Double vlrUnitario;
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	@OneToMany

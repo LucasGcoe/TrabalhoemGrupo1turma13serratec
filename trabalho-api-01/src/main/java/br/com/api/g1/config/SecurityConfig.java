@@ -43,17 +43,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da API
-	        http
-			        .cors()
-			        .and()
-	        		.csrf().disable()
-	                .httpBasic().disable()
-	                .authorizeHttpRequests()
-	                .antMatchers("/teste/login", "/teste/count").permitAll()
-	                .antMatchers("/teste/ola").hasRole("USER")
-	                .antMatchers("/teste/delete/**").hasRole("ADMIN")
-	                .antMatchers("/teste/listar").hasRole("ADMIN")
-	                .and()
+	    	http
+		            .cors()
+		            .and()
+		            .csrf().disable()
+		            .httpBasic().disable()
+		            .authorizeHttpRequests()
+		            .antMatchers("/clientes/salvarCliente","/categorias/listarCategorias","/categorias/listarCategoria/{id}", "/produtos/listarProdutos", "/produtos/listarIdProdutos/{id}").permitAll()//TODAS AS ROTAS TEM QUE ENTRAR AQUI, DE TODOS OS CONTROLES################
+		            .antMatchers("/clientes/salvarCliente").hasRole("CLIENTE")
+		            .antMatchers("funcionarios/atualizarFuncionario/{id}","funcionarios/desativarFuncionario/{id}","funcionarios/deletarIdFuncionarios/{id}","funcionarios/listarIdFuncionarios/{id}","funcionarios/salvarFuncionario","funcionarios/listarFuncionarios","endereco/deletarEndereco/{id}","endereco/listarEnderecos","cliente/deletarCliente/{id}","cliente/listarCliente/{id}","cliente/listarClientes","/produtos/deletarIdProdutos/{id}","/produtos/desativarProduto/{id}","/produtos/atualizarProduto/{id}","/produtos/salvarProduto","/pedidos/atualizarPedido/{id}","/categorias/deletarCategoria/{id}","/categorias/desativarCategoria/{id}","/categorias/atualizarCategoria/{id}","/categorias/salvarCategoria").hasRole("FUNCIONARIO")
+		            .antMatchers("endereco/atualizarEndereco/{id}","endereco/desativarEndereco/{id}","endereco/salvarEndereco","endereco/listarEndereco/{id}","cliente/desativarCliente/{id}","cliente/atualizarCliente/{id}","/pedidos/deletarIdPedido/{id}","/pedidos/desativarPedido/{id}","/pedidos/salvarPedido","/pedidos/listarPedidos","/pedidos/listarIdPedido/{id}").hasAnyRole("CLIENTE", "FUNCIONARIO")
+		            .and()
 	                .userDetailsService(uds)
 	                .exceptionHandling()
 	                    .authenticationEntryPoint(

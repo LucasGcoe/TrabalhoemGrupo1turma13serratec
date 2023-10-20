@@ -1,5 +1,6 @@
 package br.com.api.g1.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "endereco")
@@ -15,12 +18,29 @@ public class Endereco {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_endereco")
 	private Integer id_endereco;
+	@Column(name = "cep_endereco")
+	@NotNull 
+	@Size(max=10)
 	private String cep;
+	@Column(name = "logradouro_endereco")
+	@NotNull 
+	@Size(max=60)
 	private String logradouro;
+	@Column(name = "bairro_endereco")
+	@NotNull 
+	@Size(max=30)
 	private String bairro;
+	@Column(name = "localidade_endereco")
+	@NotNull 
+	@Size(max=35)
 	private String localidade;
+	@Column(name = "cep_endereco")
+	@NotNull 
+	@Size(max=2)
 	private String uf;
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 //	@JsonProperty(access = JsonProperty.Access.READ_ONLY)

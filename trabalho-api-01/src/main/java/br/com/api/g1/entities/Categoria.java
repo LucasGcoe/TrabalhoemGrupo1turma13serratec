@@ -1,10 +1,13 @@
 package br.com.api.g1.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "categoria")
@@ -12,9 +15,16 @@ public class Categoria {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_categoria")
 	private Integer id_categoria;
+	@NotNull
+	@Size(max=60)
+	@Column(name = "nome_categoria")
 	private String nome;
+	@Size(max=60)
+	@Column(name = "descricao_categoria")
 	private String descricao;
+	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	public Categoria() {

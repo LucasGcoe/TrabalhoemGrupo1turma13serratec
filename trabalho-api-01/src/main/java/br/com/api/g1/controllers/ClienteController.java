@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g1.entities.Cliente;
 import br.com.api.g1.services.ClienteService;
+import br.com.api.g1.services.EmailService;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 	
+	private EmailService emailService;
 	@Autowired
 	ClienteService clienteService;
 	
@@ -44,6 +46,7 @@ public class ClienteController {
 	
 	@DeleteMapping("/desativarCliente/{id}")
 	public void desativarCliente(@PathVariable Integer id) {
+		emailService.envioEmailInativo();
 		clienteService.desativarCliente(id);
 	}
 			
