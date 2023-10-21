@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -66,23 +67,31 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("apiserrag1@gmail.com");
-			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setTo("thiagomvk08@gmail.com");
 			helper.setSubject("Cadastro concluido!");
 
 			StringBuilder builder = new StringBuilder();
 			builder.append("<html>\r\n");
 			builder.append("	<body>\r\n");
 			builder.append("		<div align=\"center\">\r\n");
+			builder.append("		<img src=\"cid:ecommerce\">\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
 			builder.append("			<h1>Cadastro realizado com sucesso!</h1>\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			<h3>Bem vindo(a) ao G1 Ecommerce</h3>\r\n");
 			builder.append("		</div>\r\n");
 			builder.append("		<br/>\r\n");
 			builder.append("		<div align=\"center\">\r\n");
-			builder.append("			Em caso de erro, favor contatar o suporte: serratecgrupo1@gmail.com");
+			builder.append("			Em caso de erro, favor contatar o suporte: apiserrag1@gmail.com");
 			builder.append("		</div>\r\n");
 			builder.append("	</body>\r\n");
 			builder.append("</html>\r\n");
 
 			helper.setText(builder.toString(), true);
+			ClassPathResource path = new ClassPathResource("images/ecommerce.jpg");
+			helper.addInline("ecommerce", path);
 			emailSender.send(mensagemCadastro);
 
 		} catch (MessagingException e) {
@@ -96,7 +105,7 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("apiserrag1@gmail.com");
-			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setTo("thiagomvk08@gmail.com");
 			helper.setSubject("Cadastro concluido!");
 			
 			LocalDate localDate=LocalDate.now();
@@ -109,6 +118,9 @@ public class EmailService {
 			StringBuilder builder= new StringBuilder();
 			builder.append("<html>\r\n");
 			builder.append("<body>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("		<img src=\"cid:ecommerce\">\r\n");
+			builder.append("		</div>\r\n");
 			builder.append("<div align=\"center\">\r\n");
 			builder.append("<h1>Convite</h1>\r\n");
 			builder.append("</div>\r\n");
@@ -147,6 +159,8 @@ public class EmailService {
 			builder.append("</html>");
 			
 			helper.setText(builder.toString(), true);
+			ClassPathResource path = new ClassPathResource("images/ecommerce.jpg");
+			helper.addInline("ecommerce", path);
 			emailSender.send(mensagemCadastro);
 			
 		} catch (MessagingException e) {
@@ -159,14 +173,20 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("apiserrag1@gmail.com");
-			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setTo("thiagomvk08@gmail.com");
 			helper.setSubject("Cadastro Inativo!");
 			
 			StringBuilder builder= new StringBuilder();
 			builder.append("<html>\r\n");
 			builder.append("	<body>\r\n");
 			builder.append("		<div align=\"center\">\r\n");
+			builder.append("		<img src=\"cid:ecommerce\">\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
 			builder.append("			<h1>Seu cadastro foi CANCELADO com Sucesso!</h1>\r\n");
+			builder.append("		</div>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("			<h3>Lamentamos sua despedida, esperamos que volte em breve</h3>\r\n");
 			builder.append("		</div>\r\n");
 			builder.append("		<br/>\r\n");
 			builder.append("		<div align=\"center\">\r\n");
@@ -176,6 +196,8 @@ public class EmailService {
 			builder.append("</html>\r\n");
 		
 			helper.setText(builder.toString(), true);
+			ClassPathResource path = new ClassPathResource("images/ecommerce.jpg");
+			helper.addInline("ecommerce", path);
 			emailSender.send(mensagemCadastro);
 		}
 		catch(MessagingException e) {
@@ -188,12 +210,15 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("apiserrag1@gmail.com");
-			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setTo("thiagomvk08@gmail.com");
 			helper.setSubject("Pedido Cancelado!");
 			
 			StringBuilder builder= new StringBuilder();
 			builder.append("<html>\r\n");
 			builder.append("	<body>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("		<img src=\"cid:ecommerce\">\r\n");
+			builder.append("		</div>\r\n");
 			builder.append("		<div align=\"center\">\r\n");
 			builder.append("			<h1>Seu Pedido foi CANCELADO com Sucesso!</h1>\r\n");
 			builder.append("		</div>\r\n");
@@ -205,6 +230,8 @@ public class EmailService {
 			builder.append("</html>\r\n");
 		
 			helper.setText(builder.toString(), true);
+			ClassPathResource path = new ClassPathResource("images/ecommerce.jpg");
+			helper.addInline("ecommerce", path);
 			emailSender.send(mensagemCadastro);
 		}
 		catch(MessagingException e) {
@@ -217,12 +244,15 @@ public class EmailService {
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("apiserrag1@gmail.com");
-			helper.setTo("lucasjosegoncalves.original@gmail.com");
+			helper.setTo("thiagomvk08@gmail.com");
 			helper.setSubject("Pedido Realizado!");
 			
 			StringBuilder builder= new StringBuilder();
 			builder.append("<html>\r\n");
 			builder.append("	<body>\r\n");
+			builder.append("		<div align=\"center\">\r\n");
+			builder.append("		<img src=\"cid:ecommerce\">\r\n");
+			builder.append("		</div>\r\n");
 			builder.append("		<div align=\"center\">\r\n");
 			builder.append("			<h1>Seu Pedido foi REALIZADO com Sucesso!</h1>\r\n");
 			builder.append("		</div>\r\n");
@@ -234,6 +264,8 @@ public class EmailService {
 			builder.append("</html>\r\n");
 		
 			helper.setText(builder.toString(), true);
+			ClassPathResource path = new ClassPathResource("images/ecommerce.jpg");
+			helper.addInline("ecommerce", path);
 			emailSender.send(mensagemCadastro);
 		}
 		

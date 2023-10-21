@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,7 +34,7 @@ public class Endereco {
 	@NotNull 
 	@Size(max=35)
 	private String localidade;
-	@Column(name = "cep_endereco")
+	@Column(name = "uf_endereco")
 	@NotNull 
 	@Size(max=2)
 	private String uf;
@@ -44,9 +42,9 @@ public class Endereco {
 	private Boolean ativo;
 	
 //	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
+//	@ManyToOne
+//	@JoinColumn(name = "cliente_id")
+//	private Cliente cliente;
 	
 	public Endereco() {
 		super();
@@ -64,7 +62,7 @@ public class Endereco {
 		this.localidade = localidade;
 		this.uf = uf;
 		this.ativo = ativo;
-		this.cliente = cliente;
+//		this.cliente = cliente;
 	}
 
 	public Integer getId_endereco() {
@@ -115,13 +113,13 @@ public class Endereco {
 		this.uf = uf;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setClientes(Cliente cliente) {
-		this.cliente = cliente;
-	}
+//	public Cliente getCliente() {
+//		return cliente;
+//	}
+//
+//	public void setClientes(Cliente cliente) {
+//		this.cliente = cliente;
+//	}
 
 	public Boolean getAtivo() {
 		return ativo;
@@ -134,8 +132,7 @@ public class Endereco {
 	@Override
 	public String toString() {
 		return "Endereco [id_endereco=" + id_endereco + ", cep=" + cep + ", logradouro=" + logradouro + ", bairro="
-				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", ativo=" + ativo + ", clientes=" + cliente
-				+ "]";
+				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", ativo=" + ativo + "]";
 	}
 
 	

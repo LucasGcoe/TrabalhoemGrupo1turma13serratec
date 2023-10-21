@@ -1,11 +1,13 @@
 package br.com.api.g1.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import br.com.api.g1.dto.ClienteDTO;
 import br.com.api.g1.entities.Cliente;
 import br.com.api.g1.repositories.ClienteRepository;
 
@@ -19,8 +21,30 @@ public class ClienteService {
 		return clienteRepository.save(cliente);
 	}
 	
-	public List<Cliente> listarClientes(){
-		return clienteRepository.findAll();
+	public List<ClienteDTO> listarClientes(){
+		
+		List<ClienteDTO> infoClientes = new ArrayList<>();
+		List<Cliente> clientes = clienteRepository.findAll();
+		for(Cliente cliente : clientes) {
+			infoClientes.add(converterClienteDTO(cliente));
+		}
+		return infoClientes;
+		
+	}
+	
+	public ClienteDTO converterClienteDTO(Cliente cliente) {
+		ClienteDTO clienteConvertido = new ClienteDTO();
+		clienteConvertido.setCpf(cliente.getCpf());
+		clienteConvertido.setBairro(cliente.getEnderecos().getBairro());
+		clienteConvertido.setCep(cliente.getEnderecos().getCep());
+		clienteConvertido.setCpf(cliente.getCpf());
+		clienteConvertido.setLocalidade(cliente.getEnderecos().getLocalidade());
+		clienteConvertido.setLogradouro(cliente.getEnderecos().getLogradouro());
+		clienteConvertido.setNascimento(cliente.getNascimento());
+		clienteConvertido.setTelefone(cliente.getTelefone());
+		clienteConvertido.setUf(cliente.getEnderecos().getUf());
+		clienteConvertido.setUsuario(cliente.getUsuario());
+		return clienteConvertido;
 	}
 	
 	public Cliente listarIdCliente(Integer id) {

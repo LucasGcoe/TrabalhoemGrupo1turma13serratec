@@ -42,8 +42,12 @@ public class Cliente{
 	@Column(name = "ativo")
 	private Boolean ativo;
 	
-	@OneToMany(mappedBy = "cliente")
-	private List<Endereco> enderecos;
+//	@OneToMany(mappedBy = "cliente")
+//	private List<Endereco> enderecos;
+	
+	@OneToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 		
 	@OneToMany
 	private List<Pedido> pedidos;
@@ -59,7 +63,7 @@ public class Cliente{
 
 	public Cliente(Integer id_cliente, @NotNull @Size(max = 14) String telefone,
 			@NotNull @Size(max = 60) String usuario, @NotNull @Size(max = 11) String cpf,
-			@NotNull @Size(max = 10) Date nascimento, Boolean ativo, List<Endereco> enderecos, List<Pedido> pedidos,
+			@NotNull @Size(max = 10) Date nascimento, Boolean ativo, Endereco endereco, List<Pedido> pedidos,
 			User user) {
 		super();
 		this.id_cliente = id_cliente;
@@ -68,7 +72,7 @@ public class Cliente{
 		this.cpf = cpf;
 		this.nascimento = nascimento;
 		this.ativo = ativo;
-		this.enderecos = enderecos;
+		this.endereco = endereco;
 		this.pedidos = pedidos;
 		this.user = user;
 	}
@@ -135,6 +139,14 @@ public class Cliente{
 
 	public void setUser(User user) {
 		this.user = user;
+	}	
+
+	public Endereco getEnderecos() {
+		return endereco;
+	}
+
+	public void setEnderecos(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override

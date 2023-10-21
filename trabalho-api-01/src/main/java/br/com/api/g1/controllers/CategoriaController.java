@@ -36,7 +36,7 @@ public class CategoriaController {
 	
 	@GetMapping("/listarCategorias")
 	public List<Categoria> listarCategorias() {
-		//emailService.envioEmailPedidoRealizado();//!!!!!!!!!USADO PARA O DISPARO DE EMAIL PARA CADA .ENDPOINT
+		emailService.envioEmailPedidoRealizado();//!!!!!!!!!USADO PARA O DISPARO DE EMAIL PARA CADA .ENDPOINT
 		return categoriaService.listarCategorias();
 	}
 
