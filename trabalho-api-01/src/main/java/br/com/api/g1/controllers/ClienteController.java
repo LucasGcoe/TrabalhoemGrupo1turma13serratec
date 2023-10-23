@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g1.dto.ClienteDTO;
@@ -55,5 +56,9 @@ public class ClienteController {
 	public Cliente atualizarCliente(@PathVariable Integer id, @RequestBody Cliente cliente) {
 		return clienteService.atualizarCliente(id, cliente);
 	}
+	@GetMapping("/clientes")
+    public List<ClienteDTO> listarClientesPorCPF(@RequestParam("cpf") String cpf) {
+        return clienteService.listarClientesPorCPF(cpf);
+    }
 
 }

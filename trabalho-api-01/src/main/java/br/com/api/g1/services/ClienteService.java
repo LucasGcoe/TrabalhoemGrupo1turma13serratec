@@ -2,10 +2,10 @@ package br.com.api.g1.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.api.g1.dto.ClienteDTO;
 import br.com.api.g1.entities.Cliente;
@@ -16,22 +16,22 @@ public class ClienteService {
 
 	@Autowired
 	ClienteRepository clienteRepository;
-	
+
 	public Cliente salvarCliente(Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
-	
-	public List<ClienteDTO> listarClientes(){
-		
+
+	public List<ClienteDTO> listarClientes() {
+
 		List<ClienteDTO> infoClientes = new ArrayList<>();
 		List<Cliente> clientes = clienteRepository.findAll();
-		for(Cliente cliente : clientes) {
+		for (Cliente cliente : clientes) {
 			infoClientes.add(converterClienteDTO(cliente));
 		}
 		return infoClientes;
-		
+
 	}
-	
+
 	public ClienteDTO converterClienteDTO(Cliente cliente) {
 		ClienteDTO clienteConvertido = new ClienteDTO();
 		clienteConvertido.setCpf(cliente.getCpf());
@@ -46,68 +46,62 @@ public class ClienteService {
 		clienteConvertido.setUsuario(cliente.getUsuario());
 		return clienteConvertido;
 	}
-	
+
 	public Cliente listarIdCliente(Integer id) {
 		return clienteRepository.findById(id).get();
 	}
-	
-	public void deletarIdCliente(@PathVariable Integer id) {
+
+	public void deletarIdCliente(Integer id) {
 		clienteRepository.deleteById(id);
 	}
-	
+
 	public void desativarCliente(Integer id) {
 		Cliente cliente = listarIdCliente(id);
-		
-		if(cliente != null) {
+
+		if (cliente != null) {
 			cliente.setAtivo(false);
 			clienteRepository.save(cliente);
 		}
 	}
-	
+
 	public Cliente atualizarCliente(Integer id, Cliente cliente) {
 		Cliente dadoAntigo = listarIdCliente(id);
-		
-		if(cliente.getCpf() != null) {
+
+		if (cliente.getCpf() != null) {
 			dadoAntigo.setCpf(cliente.getCpf());
 		}
-		if(cliente.getUser().getEmail() != null) {
+		if (cliente.getUser().getEmail() != null) {
 			dadoAntigo.getUser().setEmail(cliente.getUser().getEmail());
 		}
-		
-		if(cliente.getNascimento() != null) {
+
+		if (cliente.getNascimento() != null) {
 			dadoAntigo.setNascimento(cliente.getNascimento());
 		}
-		if(cliente.getUser().getNomeUsuario() != null) {
+		if (cliente.getUser().getNomeUsuario() != null) {
 			dadoAntigo.getUser().setNomeUsuario(cliente.getUser().getNomeUsuario());
 		}
-		if(cliente.getTelefone() != null) {
+		if (cliente.getTelefone() != null) {
 			dadoAntigo.setTelefone(cliente.getTelefone());
 		}
-		if(cliente.getUsuario() != null) {
+		if (cliente.getUsuario() != null) {
 			dadoAntigo.setUsuario(cliente.getUsuario());
 		}
-		if(cliente.getAtivo() != null) {
+		if (cliente.getAtivo() != null) {
 			dadoAntigo.setAtivo(cliente.getAtivo());
 		}
-		
+
 		dadoAntigo.setId_cliente(id);
 		return clienteRepository.save(dadoAntigo);
 	}
+
+	public List<ClienteDTO> listarClientesPorCPF(String cpf) {
+		
+		
+	        List<Cliente> clientes = clienteRepository.findByCpf(cpf);
+	        return clientes.stream()
+	            .map(cliente -> new ClienteDTO())//colocar aqui construtor
+	            .collect(Collectors.toList());
+	    }
 	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
