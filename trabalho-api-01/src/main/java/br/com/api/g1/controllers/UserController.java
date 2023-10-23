@@ -1,5 +1,6 @@
 package br.com.api.g1.controllers;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,12 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.api.g1.config.JWTUtil;
 import br.com.api.g1.dto.LoginDTO;
 import br.com.api.g1.dto.UserDTO;
+import br.com.api.g1.entities.Cliente;
 import br.com.api.g1.entities.Endereco;
+import br.com.api.g1.entities.Funcionario;
 import br.com.api.g1.entities.Role;
 import br.com.api.g1.entities.User;
 import br.com.api.g1.enums.TipoRoleEnum;
+import br.com.api.g1.repositories.ClienteRepository;
 import br.com.api.g1.repositories.EnderecoRepository;
+import br.com.api.g1.repositories.FuncionarioRepository;
 import br.com.api.g1.repositories.RoleRepository;
+import br.com.api.g1.repositories.UserRepository;
 import br.com.api.g1.services.EnderecoService;
 import br.com.api.g1.services.UserService;
 
@@ -53,6 +59,15 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    FuncionarioRepository funcionarioRepository;
+    
+    @Autowired
+    UserRepository userRepository;
+    
+    @Autowired
+    ClienteRepository clienteRepository;
 
 @PostMapping("/registro")
     public User cadastro(@RequestParam String email, @RequestBody UserDTO user){
@@ -60,25 +75,6 @@ public class UserController {
         Set<String> strRoles = user.getRoles();
 		Set<Role> roles = new HashSet<>();
 
-		if (strRoles == null) {
-			Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
-					.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-			roles.add(userRole);
-		} else {
-			strRoles.forEach(role -> {
-				switch (role) {
-				case "FUNCIONARIO":
-					Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_FUNCIONARIO)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(adminRole);
-					break;
-				case "CLIENTE":
-					Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
-							.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
-					roles.add(userRole);
-				}
-			});
-		}
 		
 		Endereco viaCep = enderecoService.pesquisarEndereco(user.getCep());
 		Endereco enderecoNovo = new Endereco();
@@ -92,10 +88,48 @@ public class UserController {
         User usuarioResumido = new User();
         usuarioResumido.setNomeUsuario(user.getNomeUsuario());
         usuarioResumido.setEmail(user.getEmail());
-        usuarioResumido.setRoles(roles);
+       
         String encodedPass = passwordEncoder.encode(user.getPassword());
         usuarioResumido.setPassword(encodedPass);
         
+        if (strRoles == null) {
+        	Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
+        			.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+        	roles.add(userRole);
+        } else {
+        	strRoles.forEach(role -> {
+        		switch (role) {
+        		case "FUNCIONARIO":
+        			Role adminRole = roleRepository.findByName(TipoRoleEnum.ROLE_FUNCIONARIO)
+        			.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+        			roles.add(adminRole);
+        			Funcionario funcionario = new Funcionario();
+        			funcionario.setCpf(user.getCpf());
+        			funcionario.setAtivo(true);
+        			usuarioResumido.setRoles(roles);
+        			funcionario.setProdutos(new ArrayList<>());
+        			userService.save(usuarioResumido);
+        			funcionario.setUser(usuarioResumido);
+        			funcionarioRepository.save(funcionario);
+        			break;
+        		case "CLIENTE":
+        			Role userRole = roleRepository.findByName(TipoRoleEnum.ROLE_CLIENTE)
+        			.orElseThrow(() -> new RuntimeException("Erro: Role não encontrada."));
+        			roles.add(userRole);
+        			Cliente cliente = new Cliente();
+        			cliente.setCpf(user.getCpf());
+        			cliente.setAtivo(true);
+        			cliente.setNascimento(user.getNascimento());
+        			cliente.setTelefone(user.getTelefone());
+        			cliente.setUsuario(user.getNomeUsuario());
+        			cliente.setEndereco(enderecoNovo);
+        			usuarioResumido.setRoles(roles);
+        			userService.save(usuarioResumido);
+        			cliente.setUser(usuarioResumido);
+        			clienteRepository.save(cliente);
+        		}
+        	});
+        }
         //emailService.envioEmailCadastro(email, user);
         
         return userService.save(usuarioResumido);

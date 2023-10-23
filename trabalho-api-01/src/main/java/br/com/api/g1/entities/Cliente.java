@@ -37,7 +37,6 @@ public class Cliente{
 	private String cpf;
 	@Column(name = "nascimento_cliente")
 	@NotNull 
-	@Size(max=10)
 	private Date nascimento;
 	@Column(name = "ativo")
 	private Boolean ativo;
@@ -63,7 +62,7 @@ public class Cliente{
 
 	public Cliente(Integer id_cliente, @NotNull @Size(max = 14) String telefone,
 			@NotNull @Size(max = 60) String usuario, @NotNull @Size(max = 11) String cpf,
-			@NotNull @Size(max = 10) Date nascimento, Boolean ativo, Endereco endereco, List<Pedido> pedidos,
+			@NotNull Date nascimento, Boolean ativo, Endereco endereco, List<Pedido> pedidos,
 			User user) {
 		super();
 		this.id_cliente = id_cliente;
@@ -141,11 +140,11 @@ public class Cliente{
 		this.user = user;
 	}	
 
-	public Endereco getEnderecos() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEnderecos(Endereco endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 

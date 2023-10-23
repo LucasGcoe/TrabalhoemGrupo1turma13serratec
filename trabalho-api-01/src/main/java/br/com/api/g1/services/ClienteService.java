@@ -35,14 +35,14 @@ public class ClienteService {
 	public ClienteDTO converterClienteDTO(Cliente cliente) {
 		ClienteDTO clienteConvertido = new ClienteDTO();
 		clienteConvertido.setCpf(cliente.getCpf());
-		clienteConvertido.setBairro(cliente.getEnderecos().getBairro());
-		clienteConvertido.setCep(cliente.getEnderecos().getCep());
+		clienteConvertido.setBairro(cliente.getEndereco().getBairro());
+		clienteConvertido.setCep(cliente.getEndereco().getCep());
 		clienteConvertido.setCpf(cliente.getCpf());
-		clienteConvertido.setLocalidade(cliente.getEnderecos().getLocalidade());
-		clienteConvertido.setLogradouro(cliente.getEnderecos().getLogradouro());
+		clienteConvertido.setLocalidade(cliente.getEndereco().getLocalidade());
+		clienteConvertido.setLogradouro(cliente.getEndereco().getLogradouro());
 		clienteConvertido.setNascimento(cliente.getNascimento());
 		clienteConvertido.setTelefone(cliente.getTelefone());
-		clienteConvertido.setUf(cliente.getEnderecos().getUf());
+		clienteConvertido.setUf(cliente.getEndereco().getUf());
 		clienteConvertido.setUsuario(cliente.getUsuario());
 		return clienteConvertido;
 	}
