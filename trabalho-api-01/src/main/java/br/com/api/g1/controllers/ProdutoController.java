@@ -43,15 +43,18 @@ public class ProdutoController {
 	@DeleteMapping("/deletarIdProdutos/{id}")
 	public void deletarIdProdutos(@PathVariable Integer id) {
 		produtoService.deletarIdProdutos(id);
+		ResponseEntity.ok(new MessageResponseDTO("Produto deletado com sucesso!"));
 	}
 
 	@DeleteMapping("/desativarProduto/{id}")
 	public void desativarProduto(@PathVariable Integer id) {
 		produtoService.desativarProduto(id);
+		ResponseEntity.ok(new MessageResponseDTO("Produto desativado com sucesso!"));
 	}
 
 	@PutMapping("/atualizarProduto/{id}")
-	public Produto atualizarProduto(@PathVariable Integer id, @RequestBody Produto produto) {
-		return produtoService.atualizarProduto(id, produto);
+	public ResponseEntity<MessageResponseDTO> atualizarProduto(@PathVariable Integer id, @RequestBody Produto produto) {
+		 produtoService.atualizarProduto(id, produto);
+		 return ResponseEntity.ok(new MessageResponseDTO("Produto atualizado com sucesso!"));
 	}
 }

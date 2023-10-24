@@ -2,6 +2,8 @@ package br.com.api.g1.dto;
 
 import java.util.Date;
 
+import br.com.api.g1.entities.Endereco;
+
 public class ClienteDTO {
 	
 	private String telefone;
@@ -14,9 +16,13 @@ public class ClienteDTO {
 	private String localidade;
 	private String uf;
 	
+	public ClienteDTO(String string, String string2, String string3, Date date, Endereco endereco) {
+		super();
+	}
 	public ClienteDTO() {
 		super();
 	}
+
 
 	public ClienteDTO(String telefone, String usuario, String cpf, Date nascimento, String cep, String logradouro,
 			String bairro, String localidade, String uf) {

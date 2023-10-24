@@ -94,14 +94,10 @@ public class ClienteService {
 		return clienteRepository.save(dadoAntigo);
 	}
 
-	public List<ClienteDTO> listarClientesPorCPF(String cpf) {
-		
-		
-	        List<Cliente> clientes = clienteRepository.findByCpf(cpf);
-	        return clientes.stream()
-	            .map(cliente -> new ClienteDTO())//colocar aqui construtor
-	            .collect(Collectors.toList());
-	    }
-	
+	public ClienteDTO listarClientesPorCPF(String cpf) {
+
+		Cliente cliente = clienteRepository.findByCpf(cpf);
+		return converterClienteDTO(cliente);
+	}
 
 }

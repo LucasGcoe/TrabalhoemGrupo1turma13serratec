@@ -35,15 +35,14 @@ public class Produto {
 	private String descricao;
 	@Column(name = "dataFabricacao_produto")
 	@NotNull 
-	@Size(max=15)
 	private Date dataFabricacao;
 	@Column(name = "qtdEstoque_produto")
 	@NotNull 
-	@Size(max=100)
+	
 	private Integer qtdEstoque;
 	@Column(name = "vlrUnitario_produto")
 	@NotNull 
-	@Size(max=100)
+	
 	private Double vlrUnitario;
 	@Column(name = "ativo")
 	private Boolean ativo;
@@ -65,8 +64,8 @@ public class Produto {
 	}
 
 	public Produto(Integer id_produto, @NotNull @Size(max = 50) String nome, @NotNull @Size(max = 120) String descricao,
-			@NotNull @Size(max = 15) Date dataFabricacao, @NotNull @Size(max = 100) Integer qtdEstoque,
-			@NotNull @Size(max = 100) Double vlrUnitario, Boolean ativo, List<Categoria> categorias,
+			@NotNull Date dataFabricacao, @NotNull Integer qtdEstoque,
+			@NotNull Double vlrUnitario, Boolean ativo, List<Categoria> categorias,
 			List<Pedido> pedidos) {
 		super();
 		this.id_produto = id_produto;

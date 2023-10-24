@@ -3,6 +3,7 @@ package br.com.api.g1.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.api.g1.dto.MessageResponseDTO;
 import br.com.api.g1.entities.Pedido;
 import br.com.api.g1.services.EmailService;
 import br.com.api.g1.services.PedidoService;
@@ -30,9 +32,10 @@ public class PedidoController {
 	PedidoService pedidoService;
 	
 	@PostMapping("/salvarPedido") 
-	public Pedido salvarPedido(@RequestBody Pedido pedido) {
+	public ResponseEntity<MessageResponseDTO> salvarPedido(@RequestBody Pedido pedido) {
 		emailService.envioEmailPedidoRealizado();
-		return pedidoService.salvarPedido(pedido);		
+		pedidoService.salvarPedido(pedido);	
+		return ResponseEntity.ok(new MessageResponseDTO("Novo pedido criado com sucesso!"));
 	}
 	
 	@GetMapping("/listarPedidos")
@@ -49,16 +52,19 @@ public class PedidoController {
 	public void deletarIdPedido(@PathVariable Integer id) {
 		emailService.envioEmailPedidoCancel();
 		pedidoService.deletarIdPedido(id);
+		ResponseEntity.ok(new MessageResponseDTO("Pedido deletado com sucesso!"));
 	}
 	
 	@DeleteMapping("/desativarPedido/{id}")
 	public void desativarPedido(@PathVariable Integer id) {
 		pedidoService.desativarPedido(id);
+		ResponseEntity.ok(new MessageResponseDTO("Pedido desativado com sucesso!"));
 	}
 	
 	@PutMapping("/atualizarPedido/{id}")
-	public Pedido atualizaPedido(@PathVariable Integer id, @RequestBody Pedido pedido) {
-		return pedidoService.atualizarPedido(id, pedido);
+	public ResponseEntity<MessageResponseDTO> atualizaPedido(@PathVariable Integer id, @RequestBody Pedido pedido) {
+		pedidoService.atualizarPedido(id, pedido);
+		return ResponseEntity.ok(new MessageResponseDTO("Novo pedido criado com sucesso!"));
 	}
 	
 	
