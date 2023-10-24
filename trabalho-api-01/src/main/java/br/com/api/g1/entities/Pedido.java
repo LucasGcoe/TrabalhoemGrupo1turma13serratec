@@ -1,15 +1,18 @@
 package br.com.api.g1.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "pedido")
@@ -21,16 +24,19 @@ public class Pedido {
 	private Integer id_pedido; 
 	@Column(name = "dataPedido_pedido")
 	@NotNull 
-	@Size(max=10)
 	private Date dataPedido;
 	@Column(name = "ativo")
 	private Boolean ativo;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+	private Cliente Cliente;
 	
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(Integer id_pedido, @NotNull @Size(max = 10) Date dataPedido, Boolean ativo) {
+	public Pedido(Integer id_pedido, @NotNull Date dataPedido, Boolean ativo) {
 		super();
 		this.id_pedido = id_pedido;
 		this.dataPedido = dataPedido;

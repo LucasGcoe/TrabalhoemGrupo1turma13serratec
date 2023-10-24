@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -49,8 +50,8 @@ public class Produto {
 	
 	@OneToMany
 	@JoinColumn(name = "produto_id")
-	private List<Categoria> categorias;
-	
+	private List<Categoria> categorias;// passar para categoria
+		
 	@ManyToMany
 	@JoinTable(
 			name="produto_pedido",
@@ -58,6 +59,8 @@ public class Produto {
 			inverseJoinColumns=@JoinColumn(name="pedido_id")
 			)
 	private List<Pedido> pedidos;
+	
+
 	
 	public Produto() {
 		super();

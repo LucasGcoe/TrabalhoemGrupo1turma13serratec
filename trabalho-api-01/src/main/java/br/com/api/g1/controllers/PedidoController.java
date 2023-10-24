@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.g1.dto.MessageResponseDTO;
+import br.com.api.g1.dto.PedidoDTO;
 import br.com.api.g1.entities.Pedido;
 import br.com.api.g1.services.EmailService;
 import br.com.api.g1.services.PedidoService;
@@ -67,7 +69,11 @@ public class PedidoController {
 		return ResponseEntity.ok(new MessageResponseDTO("Novo pedido criado com sucesso!"));
 	}
 	
-	
+	@GetMapping("/pedidos/pedidos")
+	public PedidoDTO listarPedidoPorCliente(@RequestParam("cpf") String cpf) {
+		return listarPedidoPorCliente(cpf);
+		
+	}
 	
 }
 
