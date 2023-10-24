@@ -1,5 +1,6 @@
 package br.com.api.g1.dto;
 
+import java.util.Date;
 import java.util.Set;
 
 public class UserDTO {
@@ -8,18 +9,22 @@ public class UserDTO {
     private String email;
     private Set<String> roles;
     private String password;
-    
+    private String cpf;
     private String cep;
 	private String numero;
 	private String complementoAdicional;
+	private String telefone;
+	private Date nascimento;
+
 
 	public UserDTO() {
 		super();
 	}
 	
-	public UserDTO(String nomeUsuario, String email, Set<String> roles, String password, String cep, String numero,
-			String complementoAdicional) {
+	public UserDTO(String cpf, String nomeUsuario, String email, Set<String> roles, String password, String cep, String numero,
+			String complementoAdicional, String telefone, Date nascimento) {
 		super();
+		this.cpf = cpf;
 		this.nomeUsuario = nomeUsuario;
 		this.email = email;
 		this.roles = roles;
@@ -27,6 +32,8 @@ public class UserDTO {
 		this.cep = cep;
 		this.numero = numero;
 		this.complementoAdicional = complementoAdicional;
+		this.telefone = telefone;
+		this.nascimento = nascimento;
 	}
 
 	public String getNomeUsuario() {
@@ -79,6 +86,33 @@ public class UserDTO {
 
 	public String getComplementoAdicional() {
 		return complementoAdicional;
+	}
+
+	
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	
+	
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
 	}
 
 	public void setComplementoAdicional(String complementoAdicional) {

@@ -31,11 +31,12 @@ public class Categoria {
 		super();
 	}
 
-	public Categoria(Integer id_categoria, String nome, String descricacao, Boolean ativo) {
+	public Categoria(Integer id_categoria, @NotNull @Size(max = 60) String nome, @Size(max = 60) String descricao,
+			Boolean ativo) {
 		super();
 		this.id_categoria = id_categoria;
 		this.nome = nome;
-		this.descricao = descricacao;
+		this.descricao = descricao;
 		this.ativo = ativo;
 	}
 

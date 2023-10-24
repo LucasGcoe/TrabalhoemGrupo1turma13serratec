@@ -16,6 +16,10 @@ public class UserService {
     public User findByEmail(String email){
         return userRepository.findByEmail(email).get();
     }
+    
+//    public User findByCpf(String cpf){
+//        return userRepository.findByCpf(cpf);
+//    }
 
     public User save(User user){
         return userRepository.save(user);

@@ -48,7 +48,8 @@ public class User {
 		super();
 	}
 
-	public User(Integer idUser, String nomeUsuario, String email, Set<Role> roles, String password) {
+	public User(Integer idUser, @NotNull @Size(max = 100) String nomeUsuario, @NotNull @Size(max = 100) String email,
+			Set<Role> roles, String password) {
 		super();
 		this.idUser = idUser;
 		this.nomeUsuario = nomeUsuario;
@@ -56,6 +57,7 @@ public class User {
 		this.roles = roles;
 		this.password = password;
 	}
+
 
 	public Integer getIdUser() {
 		return idUser;

@@ -41,7 +41,8 @@ public class Funcionario{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Funcionario(Integer id_funcionario, String cpf, Boolean ativo, List<Produto> produtos, User user) {
+	public Funcionario(Integer id_funcionario, @NotNull @Size(max = 11) String cpf, Boolean ativo,
+			List<Produto> produtos, User user) {
 		super();
 		this.id_funcionario = id_funcionario;
 		this.cpf = cpf;

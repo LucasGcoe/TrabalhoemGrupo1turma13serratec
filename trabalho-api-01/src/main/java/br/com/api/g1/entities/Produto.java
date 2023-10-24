@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -35,37 +36,39 @@ public class Produto {
 	private String descricao;
 	@Column(name = "dataFabricacao_produto")
 	@NotNull 
-	@Size(max=15)
 	private Date dataFabricacao;
 	@Column(name = "qtdEstoque_produto")
 	@NotNull 
-	@Size(max=100)
+	
 	private Integer qtdEstoque;
 	@Column(name = "vlrUnitario_produto")
 	@NotNull 
-	@Size(max=100)
+	
 	private Double vlrUnitario;
 	@Column(name = "ativo")
 	private Boolean ativo;
 	
 	@OneToMany
 	@JoinColumn(name = "produto_id")
-	private List<Categoria> categorias;
+	private List<Categoria> categorias;// passar para categoria
+		
+//	@ManyToMany
+//	@JoinTable(
+//			name="produto_pedido",
+//			joinColumns=@JoinColumn(name="produto_id"),
+//			inverseJoinColumns=@JoinColumn(name="pedido_id")
+//			)
+//	private List<Pedido> pedidos;
 	
-	@ManyToMany
-	@JoinTable(
-			name="produto_pedido",
-			joinColumns=@JoinColumn(name="produto_id"),
-			inverseJoinColumns=@JoinColumn(name="pedido_id")
-			)
-	private List<Pedido> pedidos;
+
 	
 	public Produto() {
 		super();
 	}
 
-	public Produto(Integer id_produto, String nome, String descricao, Date dataFabricacao, Integer qtdEstoque,
-			Double vlrUnitario, Boolean ativo) {
+	public Produto(Integer id_produto, @NotNull @Size(max = 50) String nome, @NotNull @Size(max = 120) String descricao,
+			@NotNull Date dataFabricacao, @NotNull Integer qtdEstoque,
+			@NotNull Double vlrUnitario, Boolean ativo, List<Categoria> categorias) {
 		super();
 		this.id_produto = id_produto;
 		this.nome = nome;
@@ -74,7 +77,9 @@ public class Produto {
 		this.qtdEstoque = qtdEstoque;
 		this.vlrUnitario = vlrUnitario;
 		this.ativo = ativo;
+		this.categorias = categorias;
 	}
+
 
 	public Integer getId_produto() {
 		return id_produto;

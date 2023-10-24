@@ -1,15 +1,19 @@
 package br.com.api.g1.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "pedido")
@@ -21,23 +25,36 @@ public class Pedido {
 	private Integer id_pedido; 
 	@Column(name = "dataPedido_pedido")
 	@NotNull 
-	@Size(max=10)
 	private Date dataPedido;
 	@Column(name = "ativo")
-	private Boolean ativo;
+	private Boolean ativo = true;
+	
+	@ManyToMany
+	@JoinTable(
+			name="pedido_produto",
+			joinColumns=@JoinColumn(name="pedido_id"),
+			inverseJoinColumns=@JoinColumn(name="produto_id")
+			)
+	private List<Produto> produtos;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+	private Cliente cliente;
+
 	public Pedido() {
 		super();
 	}
-	
-	public Pedido(Integer id_pedido, Date dataPedido, Boolean ativo) {
+
+	public Pedido(Integer id_pedido, @NotNull Date dataPedido, Boolean ativo, Cliente cliente) {
 		super();
 		this.id_pedido = id_pedido;
 		this.dataPedido = dataPedido;
 		this.ativo = ativo;
+		this.cliente = cliente;
 	}
 
 	public Integer getId_pedido() {
-		return id_pedido; 
+		return id_pedido;
 	}
 
 	public void setId_pedido(Integer id_pedido) {
@@ -51,7 +68,7 @@ public class Pedido {
 	public void setDataPedido(Date dataPedido) {
 		this.dataPedido = dataPedido;
 	}
-	
+
 	public Boolean getAtivo() {
 		return ativo;
 	}
@@ -60,9 +77,21 @@ public class Pedido {
 		this.ativo = ativo;
 	}
 
-	@Override
-	public String toString() {
-		return "Pedido [id_pedido=" + id_pedido + ", dataPedido=" + dataPedido + ", ativo=" + ativo + "]";
-	}	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	
 	
 }

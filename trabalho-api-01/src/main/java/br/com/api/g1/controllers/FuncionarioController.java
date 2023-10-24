@@ -3,6 +3,7 @@ package br.com.api.g1.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.api.g1.dto.MessageResponseDTO;
 import br.com.api.g1.entities.Funcionario;
 import br.com.api.g1.services.FuncionarioService;
 
@@ -23,8 +25,9 @@ public class FuncionarioController {
 	FuncionarioService funcionarioService;
 	
 	@PostMapping("/salvarFuncionario")
-	public Funcionario salvarFuncionario(@RequestBody Funcionario funcionario) {
-		return funcionarioService.salvarFuncionario(funcionario);
+	public ResponseEntity<MessageResponseDTO> salvarFuncionario(@RequestBody Funcionario funcionario) {
+		funcionarioService.salvarFuncionario(funcionario);
+		return ResponseEntity.ok(new MessageResponseDTO("Novo funcionário criado!"));
 		}		
 	@GetMapping("/listarFuncionarios")
 	public List<Funcionario> listarFuncionarios(){
@@ -39,17 +42,20 @@ public class FuncionarioController {
 	@DeleteMapping("/deletarIdFuncionarios/{id}")
 	public void deletarIdFuncionario(@PathVariable Integer id) {
 		funcionarioService.deletarIdFuncionario(id);
+		ResponseEntity.ok(new MessageResponseDTO("Funcionário deletado!"));
 	}
 	
 	@DeleteMapping("/desativarFuncionario/{id}")
 	public void desativarFuncionario(@PathVariable Integer id) {
 		funcionarioService.desativarFuncionario(id);
+		ResponseEntity.ok(new MessageResponseDTO("Funcionário desativado!"));
 	}
 	
 	
 	@PutMapping("/atualizarFuncionario/{id}")
-	public Funcionario atualizarFuncionario(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
-		return funcionarioService.atualizarFuncionario(id,funcionario);
+	public ResponseEntity<MessageResponseDTO> atualizarFuncionario(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
+		funcionarioService.atualizarFuncionario(id,funcionario);
+		return ResponseEntity.ok(new MessageResponseDTO("Funcionário deletado!"));
 	}
 	
 }
