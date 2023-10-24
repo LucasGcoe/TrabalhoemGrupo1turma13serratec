@@ -1,13 +1,12 @@
 package br.com.api.g1.services;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.api.g1.dto.PedidoDTO;
-import br.com.api.g1.entities.Cliente;
 import br.com.api.g1.entities.Pedido;
 import br.com.api.g1.entities.Produto;
 import br.com.api.g1.repositories.ClienteRepository;
@@ -24,7 +23,10 @@ public class PedidoService {
 	ClienteRepository clienteRepository;
 	
 	@Autowired
-	ProdutoRepository produtoRespository;
+	ProdutoRepository produtoRepository;
+	
+	@Autowired
+	ClienteService clienteService;
 	
 //	public List<PedidoDTO> listarClientes() {
 //
@@ -37,16 +39,22 @@ public class PedidoService {
 
 //	}
 
-	public PedidoDTO converterPedidoDTO(Cliente cliente, Pedido pedido, Produto produto) {
+	public PedidoDTO converterPedidoDTO(Pedido pedido) {
 		PedidoDTO pedidoConvertido = new PedidoDTO();
 		pedidoConvertido.setId_pedido(pedido.getId_pedido());
-		pedidoConvertido.setNome_cliente(cliente.getUsuario());
-		pedidoConvertido.setCpf(cliente.getCpf());
+		pedidoConvertido.setNome_cliente(pedido.getCliente().getUsuario());
+		pedidoConvertido.setCpf(pedido.getCliente().getCpf());
 		pedidoConvertido.setDataPedido(pedido.getDataPedido());
-		pedidoConvertido.setProduto_nome(produto.getNome());
-		pedidoConvertido.setProduto_descricao(produto.getDescricao());
-		pedidoConvertido.setVlr_uni(produto.getVlrUnitario());
-		pedidoConvertido.setProduto_nome(pedido.ge);
+		
+		List<Produto> produtos = new ArrayList<>();
+		for(Integer id_produto : pedidoConvertido.getId_produtos()) {
+			Produto produto = produtoRepository.findById(id_produto).get();
+			produtos.add(produto);
+		}
+		pedido.setProdutos(produtos);
+//		pedidoConvertido.setProduto_nome(pedido.getProdutos());
+//		pedidoConvertido.setProduto_descricao(produto.getDescricao());
+//		pedidoConvertido.setVlr_uni(produto.getVlrUnitario());
 				
 		return pedidoConvertido;
 	}
@@ -60,7 +68,9 @@ public class PedidoService {
 //	}
 	
 	public Pedido salvarPedido(Pedido pedido) {
-		return pedidoRepository.save(pedido);		
+		converterPedidoDTO(pedido);
+		return pedidoRepository.save(pedido);	
+		
 	}
 	
 	public List<Pedido> listarPedidos() {

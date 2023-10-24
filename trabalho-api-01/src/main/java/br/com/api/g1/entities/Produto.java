@@ -52,13 +52,13 @@ public class Produto {
 	@JoinColumn(name = "produto_id")
 	private List<Categoria> categorias;// passar para categoria
 		
-	@ManyToMany
-	@JoinTable(
-			name="produto_pedido",
-			joinColumns=@JoinColumn(name="produto_id"),
-			inverseJoinColumns=@JoinColumn(name="pedido_id")
-			)
-	private List<Pedido> pedidos;
+//	@ManyToMany
+//	@JoinTable(
+//			name="produto_pedido",
+//			joinColumns=@JoinColumn(name="produto_id"),
+//			inverseJoinColumns=@JoinColumn(name="pedido_id")
+//			)
+//	private List<Pedido> pedidos;
 	
 
 	
@@ -68,8 +68,7 @@ public class Produto {
 
 	public Produto(Integer id_produto, @NotNull @Size(max = 50) String nome, @NotNull @Size(max = 120) String descricao,
 			@NotNull Date dataFabricacao, @NotNull Integer qtdEstoque,
-			@NotNull Double vlrUnitario, Boolean ativo, List<Categoria> categorias,
-			List<Pedido> pedidos) {
+			@NotNull Double vlrUnitario, Boolean ativo, List<Categoria> categorias) {
 		super();
 		this.id_produto = id_produto;
 		this.nome = nome;
@@ -79,7 +78,6 @@ public class Produto {
 		this.vlrUnitario = vlrUnitario;
 		this.ativo = ativo;
 		this.categorias = categorias;
-		this.pedidos = pedidos;
 	}
 
 

@@ -2,11 +2,11 @@ package br.com.api.g1.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.api.g1.dto.ClienteAtualizarDTO;
 import br.com.api.g1.dto.ClienteDTO;
 import br.com.api.g1.entities.Cliente;
 import br.com.api.g1.repositories.ClienteRepository;
@@ -64,34 +64,33 @@ public class ClienteService {
 		}
 	}
 
-	public Cliente atualizarCliente(Integer id, Cliente cliente) {
+	public Cliente atualizarCliente(Integer id, ClienteAtualizarDTO cliente) {
+
 		Cliente dadoAntigo = listarIdCliente(id);
 
-		if ( dadoAntigo.getCpf() != null) {
-			cliente.setCpf( dadoAntigo.getCpf());
-		}
-		if (dadoAntigo.getUser().getEmail() != null) {
-			cliente.getUser().setEmail(dadoAntigo.getUser().getEmail());
+		if (cliente.getCpf() != null && cliente.getCpf() != dadoAntigo.getCpf()) {
+			dadoAntigo.setCpf(cliente.getCpf());
 		}
 
-		if ( dadoAntigo.getNascimento() != null) {
-			cliente.setNascimento(dadoAntigo.getNascimento());
-		}
-		if ( dadoAntigo.getUser().getNomeUsuario() != null) {
-			cliente.getUser().setNomeUsuario(dadoAntigo.getUser().getNomeUsuario());
-		}
-		if ( dadoAntigo.getTelefone() != null) {
-			cliente.setTelefone(dadoAntigo.getTelefone());
-		}
-		if ( dadoAntigo.getUsuario() != null) {
-			cliente.setUsuario(dadoAntigo.getUsuario());
-		}
-		if (dadoAntigo.getAtivo() != null) {
-			cliente.setAtivo(dadoAntigo.getAtivo());
+		if (cliente.getNascimento() != null && cliente.getNascimento() != dadoAntigo.getNascimento()) {
+			dadoAntigo.setNascimento(cliente.getNascimento());
 		}
 
-		cliente.setId_cliente(id);
-		return clienteRepository.save(cliente);
+		if (cliente.getTelefone() != null && cliente.getTelefone() != dadoAntigo.getTelefone()) {
+			dadoAntigo.setTelefone(cliente.getTelefone());
+		}
+
+		if (cliente.getUsuario() != null && cliente.getUsuario() != dadoAntigo.getUsuario()) {
+			dadoAntigo.setUsuario(cliente.getUsuario());
+		}
+
+		if (cliente.getCep() != null && cliente.getCep() != dadoAntigo.getEndereco().getCep()) {
+			dadoAntigo.getEndereco().setCep(cliente.getCep());
+		}
+
+		dadoAntigo.setId_cliente(id);
+
+		return clienteRepository.save(dadoAntigo);
 	}
 
 	public ClienteDTO listarClientesPorCPF(String cpf) {
