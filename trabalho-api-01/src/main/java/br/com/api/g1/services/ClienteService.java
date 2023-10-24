@@ -67,31 +67,31 @@ public class ClienteService {
 	public Cliente atualizarCliente(Integer id, Cliente cliente) {
 		Cliente dadoAntigo = listarIdCliente(id);
 
-		if (cliente.getCpf() != null) {
-			dadoAntigo.setCpf(cliente.getCpf());
+		if ( dadoAntigo.getCpf() != null) {
+			cliente.setCpf( dadoAntigo.getCpf());
 		}
-		if (cliente.getUser().getEmail() != null) {
-			dadoAntigo.getUser().setEmail(cliente.getUser().getEmail());
-		}
-
-		if (cliente.getNascimento() != null) {
-			dadoAntigo.setNascimento(cliente.getNascimento());
-		}
-		if (cliente.getUser().getNomeUsuario() != null) {
-			dadoAntigo.getUser().setNomeUsuario(cliente.getUser().getNomeUsuario());
-		}
-		if (cliente.getTelefone() != null) {
-			dadoAntigo.setTelefone(cliente.getTelefone());
-		}
-		if (cliente.getUsuario() != null) {
-			dadoAntigo.setUsuario(cliente.getUsuario());
-		}
-		if (cliente.getAtivo() != null) {
-			dadoAntigo.setAtivo(cliente.getAtivo());
+		if (dadoAntigo.getUser().getEmail() != null) {
+			cliente.getUser().setEmail(dadoAntigo.getUser().getEmail());
 		}
 
-		dadoAntigo.setId_cliente(id);
-		return clienteRepository.save(dadoAntigo);
+		if ( dadoAntigo.getNascimento() != null) {
+			cliente.setNascimento(dadoAntigo.getNascimento());
+		}
+		if ( dadoAntigo.getUser().getNomeUsuario() != null) {
+			cliente.getUser().setNomeUsuario(dadoAntigo.getUser().getNomeUsuario());
+		}
+		if ( dadoAntigo.getTelefone() != null) {
+			cliente.setTelefone(dadoAntigo.getTelefone());
+		}
+		if ( dadoAntigo.getUsuario() != null) {
+			cliente.setUsuario(dadoAntigo.getUsuario());
+		}
+		if (dadoAntigo.getAtivo() != null) {
+			cliente.setAtivo(dadoAntigo.getAtivo());
+		}
+
+		cliente.setId_cliente(id);
+		return clienteRepository.save(cliente);
 	}
 
 	public ClienteDTO listarClientesPorCPF(String cpf) {

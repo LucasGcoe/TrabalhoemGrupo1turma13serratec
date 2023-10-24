@@ -24,19 +24,19 @@ public class Cliente{
 	@Column(name = "id_cliente")
 	private Integer id_cliente;	
 	@Column(name = "telefone_cliente")
-	@NotNull 
+//	@NotNull 
 	@Size(max=14)
 	private String telefone;
 	@Column(name = "usuario_cliente")
-	@NotNull 
+//	@NotNull 
 	@Size(max=60)
 	private String usuario;
 	@Column(name = "cpf_cliente")
-	@NotNull 
+//	@NotNull 
 	@Size(max=11)
 	private String cpf;
 	@Column(name = "nascimento_cliente")
-	@NotNull 
+//	@NotNull 
 	private Date nascimento;
 	@Column(name = "ativo")
 	private Boolean ativo;
@@ -60,9 +60,9 @@ public class Cliente{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(Integer id_cliente, @NotNull @Size(max = 14) String telefone,
-			@NotNull @Size(max = 60) String usuario, @NotNull @Size(max = 11) String cpf,
-			@NotNull Date nascimento, Boolean ativo, Endereco endereco, List<Pedido> pedidos,
+	public Cliente(Integer id_cliente, @Size(max = 14) String telefone,
+			@Size(max = 60) String usuario, @Size(max = 11) String cpf,
+			Date nascimento, Boolean ativo, Endereco endereco, List<Pedido> pedidos,
 			User user) {
 		super();
 		this.id_cliente = id_cliente;
