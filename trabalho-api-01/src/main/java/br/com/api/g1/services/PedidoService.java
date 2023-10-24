@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.api.g1.dto.MessageResponseDTO;
 import br.com.api.g1.dto.PedidoDTO;
+import br.com.api.g1.entities.Cliente;
 import br.com.api.g1.entities.Pedido;
 import br.com.api.g1.entities.Produto;
 import br.com.api.g1.repositories.ClienteRepository;
@@ -28,6 +31,9 @@ public class PedidoService {
 	@Autowired
 	ClienteService clienteService;
 	
+	@Autowired
+	UserService userService;
+	
 //	public List<PedidoDTO> listarClientes() {
 //
 //		List<PedidoDTO> infoPedidos = new ArrayList<>();
@@ -43,7 +49,7 @@ public class PedidoService {
 		PedidoDTO pedidoConvertido = new PedidoDTO();
 		pedidoConvertido.setId_pedido(pedido.getId_pedido());
 		pedidoConvertido.setNome_cliente(pedido.getCliente().getUsuario());
-		pedidoConvertido.setCpf(pedido.getCliente().getCpf());
+		pedidoConvertido.setId_cliente(pedido.getCliente().getId_cliente());
 		pedidoConvertido.setDataPedido(pedido.getDataPedido());
 		
 		List<Produto> produtos = new ArrayList<>();
@@ -58,19 +64,25 @@ public class PedidoService {
 				
 		return pedidoConvertido;
 	}
-	
-//	public PedidoDTO listarPedidoPorCliente(String cpf, Integer id, Integer id_p) {
-//		
-//		Cliente cliente = clienteRepository.findByCpf(cpf);
-//		Optional<Pedido> pedido = pedidoRepository.findById(id);
-//		Optional<Produto> produto = produtoRespository.findById(id_p);
-//		return converterPedidoDTO(cliente,pedido,produto);
-//	}
-	
-	public Pedido salvarPedido(Pedido pedido) {
-		converterPedidoDTO(pedido);
-		return pedidoRepository.save(pedido);	
+
 		
+	public ResponseEntity<MessageResponseDTO> salvarPedido(PedidoDTO pedidoDTO) {
+		Pedido p = new Pedido(); 
+				
+		p.setId_pedido(pedidoDTO.getId_pedido());
+		p.setDataPedido(pedidoDTO.getDataPedido());
+		
+		List<Produto> produtos = new ArrayList<>();
+		for(Integer idProduto : pedidoDTO.getId_produtos()) {
+			Produto produto = produtoRepository.findById(idProduto).get();
+			produtos.add(produto);
+			
+		}
+		p.setProdutos(produtos);
+		Cliente cliente = clienteService.findById_cliente(pedidoDTO.getId_cliente());
+		p.setCliente(cliente);
+		pedidoRepository.save(p);
+		return ResponseEntity.ok(new MessageResponseDTO("Novo pedido criado com sucesso!"));
 	}
 	
 	public List<Pedido> listarPedidos() {

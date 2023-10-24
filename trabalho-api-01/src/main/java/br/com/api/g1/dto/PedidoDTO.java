@@ -6,7 +6,7 @@ import java.util.List;
 public class PedidoDTO {
 		
 		private String nome_cliente;
-		private String cpf;
+		private Integer id_cliente;
 		private Integer id_pedido;
 		private Date dataPedido;
 //		private String produto_nome;
@@ -14,10 +14,10 @@ public class PedidoDTO {
 //		private Double vlr_uni;
 		private List<Integer> id_produtos;
 		
-		public PedidoDTO(String nome_cliente,String cpf, Integer id_pedido, Date dataPedido) {
+		public PedidoDTO(String nome_cliente,Integer id_cliente, Integer id_pedido, Date dataPedido) {
 			super();
 			this.nome_cliente = nome_cliente;
-			this.cpf = cpf;
+			this.id_cliente = id_cliente;
 			this.id_pedido = id_pedido;
 			this.dataPedido = dataPedido;
 //			this.produto_nome = produto_nome;
@@ -53,12 +53,12 @@ public class PedidoDTO {
 			this.dataPedido = dataPedido;
 		}
 		
-		public String getCpf() {
-			return cpf;
+		public Integer getId_cliente() {
+			return id_cliente;
 		}
 
-		public void setCpf(String cpf) {
-			this.cpf = cpf;
+		public void setId_cliente(Integer id_cliente) {
+			this.id_cliente = id_cliente;
 		}
 		
 		public List<Integer> getId_produtos() {

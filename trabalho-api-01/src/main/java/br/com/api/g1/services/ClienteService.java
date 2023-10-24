@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.api.g1.dto.ClienteAtualizarDTO;
 import br.com.api.g1.dto.ClienteDTO;
 import br.com.api.g1.entities.Cliente;
+import br.com.api.g1.entities.User;
 import br.com.api.g1.repositories.ClienteRepository;
 
 @Service
@@ -98,5 +99,12 @@ public class ClienteService {
 		Cliente cliente = clienteRepository.findByCpf(cpf);
 		return converterClienteDTO(cliente);
 	}
+    public Cliente findByCpf(String cpf){
+        return clienteRepository.findByCpf(cpf);
+    }
+    
+    public Cliente findById_cliente(Integer id){
+        return clienteRepository.findById(id).get();
+    }
 
 }

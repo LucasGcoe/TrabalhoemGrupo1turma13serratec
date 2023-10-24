@@ -34,9 +34,9 @@ public class PedidoController {
 	PedidoService pedidoService;
 	
 	@PostMapping("/salvarPedido") 
-	public ResponseEntity<MessageResponseDTO> salvarPedido(@RequestBody Pedido pedido) {
+	public ResponseEntity<MessageResponseDTO> salvarPedido(@RequestBody PedidoDTO pedidoDTO) {
 		emailService.envioEmailPedidoRealizado();
-		pedidoService.salvarPedido(pedido);	
+		pedidoService.salvarPedido(pedidoDTO);	
 		return ResponseEntity.ok(new MessageResponseDTO("Novo pedido criado com sucesso!"));
 	}
 	

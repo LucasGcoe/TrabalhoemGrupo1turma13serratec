@@ -27,7 +27,7 @@ public class Pedido {
 	@NotNull 
 	private Date dataPedido;
 	@Column(name = "ativo")
-	private Boolean ativo;
+	private Boolean ativo = true;
 	
 	@ManyToMany
 	@JoinTable(
