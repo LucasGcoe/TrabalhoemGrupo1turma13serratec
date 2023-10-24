@@ -1,5 +1,6 @@
 ## Bem vindos(as) ao G1 Ecommerce
-![ecommerce](https://github.com/LucasGcoe/TrabalhoemGrupo1turma13serratec/assets/90783156/dbab21c0-8a04-4a5b-bf01-c5657f0bf2b5)
+![ecommerce](https://github.com/LucasGcoe/TrabalhoemGrupo1turma13serratec/assets/90783156/abca6a0c-7d59-49df-9370-1a0ecdc54675)
+
 ## Introdução
 Este projeto é o resultado do trabalho final da disciplina de API para o Serratec. Trata-se de uma API de e-commerce desenvolvida em Spring Boot 4, utilizando Java 11 como linguagem de programação e PostgreSQL como banco de dados. Além disso, a documentação da API foi aprimorada com o uso do Swagger.
 
