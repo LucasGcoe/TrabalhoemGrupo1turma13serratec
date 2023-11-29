@@ -4,6 +4,9 @@
 ## Introdução
 Este projeto é o resultado do trabalho final da disciplina de API para o Serratec. Trata-se de uma API de e-commerce desenvolvida em Spring Boot 4, utilizando Java 11 como linguagem de programação e PostgreSQL como banco de dados. Além disso, a documentação da API foi aprimorada com o uso do Swagger.
 
+<img src="https://github.com/LucasGcoe/TrabalhoemGrupo1turma13serratec/assets/90783156/68ef8b55-bb05-4d2c-a679-fce53fa6aa24" width=400></img>
+<img src="https://github.com/LucasGcoe/TrabalhoemGrupo1turma13serratec/assets/90783156/88b4966b-3d8f-4ddf-be4c-7af2aaa35ace" width=400></img>
+
 ## Sobre o Projeto
 A API de e-commerce tem como objetivo oferecer recursos para gerenciar produtos, pedidos e clientes em um cenário de compra e venda de produtos online. Alguns dos principais recursos incluem:
 
